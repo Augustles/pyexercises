@@ -25,4 +25,12 @@ import pdb
 s = '0'
 n = int(s)
 pdb.set_trace() # 运行到这里暂停进入pdb环境，命令p查看变量，n进入下一步
-print 10/n
+try: # try来运行这段代码执行出错，则后续代码不会继续执行,跳到exceptp
+    print '10/n'
+except ZeroDivisionError, e: # 具体错误
+    print e # raise
+
+'''
+finally:
+    print 'finally...'
+'''

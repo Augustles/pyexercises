@@ -1,12 +1,21 @@
 #coding=utf-8
 
+import ConfigParser
 import random # 导入random
 from pymongo import MongoClient # 导入Mongoclient
 
-db = MongoClient('192.168.0.9').august #连接August数据库
+config = ConfigParser.RawConfigParser()
+config.read(r'C:\Users\ieware\pyexercises\august.conf')
+
+try:
+    dbhost=config.get('base','dbhost')
+except NoSectionError, e:
+    print e
+
+db = MongoClient(dbhost).august #连接August数据库
 #db.authenticate # 用户认证
 print db.collection_names() # show collections
-#db.user.drop() # 清空user聚合
+db.user.drop() # 清空user聚合
 db.user.save({'id':1,'name':'nana','age':'23'}) # 插入一个数据
 
 # 插入多个数据
