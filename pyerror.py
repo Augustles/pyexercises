@@ -24,5 +24,5 @@ import pdb
 
 s = '0'
 n = int(s)
-pdb.set_trace() # 运行到这里暂停进入pdb环境，命令p查看变量
+pdb.set_trace() # 运行到这里暂停进入pdb环境，命令p查看变量，n进入下一步
 print 10/n
