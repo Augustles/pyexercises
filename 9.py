@@ -8,8 +8,3 @@ for i in range(1, 10):
             data =  '%d * %d' %(j,i) + ' = ' + str(i*j) + '\n'
             f.writelines(data) # 逐行写入
             print data # 打印
-print f.seek()
-
-
-
-
