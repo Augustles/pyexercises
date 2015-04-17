@@ -1,16 +1,17 @@
 # coding=utf-8
 # 常用函数封装
+
 def is_chinese(uchar):
     """判断一个unicode是否是汉字"""
     if uchar >= u'\u4e00' and uchar<=u'\u9fa5':
-      return True
-   else:
-   return False
+        return True
+    else:
+       return False
  
 def is_number(uchar):
    """判断一个unicode是否是数字"""
    if uchar >= u'\u0030' and uchar<=u'\u0039':
-   return True
+       return True
    else:
       return False
  
@@ -76,3 +77,4 @@ def string2List(ustring):
    if len(utmp)!=0:
       retList.append("".join(utmp))
    return retList
+print is_chinese(u'中文')
