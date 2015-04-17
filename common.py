@@ -77,4 +77,5 @@ def string2List(ustring):
    if len(utmp)!=0:
       retList.append("".join(utmp))
    return retList
-print is_chinese(u'中文')
+if __name__ == '__main__':
+    print is_chinese(u'欢迎') # 使用U前缀定义unicode字符串

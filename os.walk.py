@@ -1,10 +1,14 @@
 #-*-coding:utf-8-*-
 
 import os
+def walk_path():
+    path = raw_input('è¯·è¾“å…¥è·¯å¾„ï¼š')
+    for i in os.listdir(path):
+        x = os.path.join(path,i)
+        if os.path.isfile(x):
+            print x
 
-s = raw_input('ÇëÊäÈëÄãÒª±éÀúµÄ´ÅÅÌ :')
-for i in os.walk(s):
-    print i
 	
-for i in os.walk('s'):
-    print i
+if __name__ == '__main__':
+    walk_path()
+    print 'start walk_path'
