@@ -2,6 +2,8 @@
 
 import csv
 import pdb
+
+# csv处理
 csvfile = open('csv_test.csv','wb') # 写入模式打开
 writer = csv.writer(csvfile) # csv模块写入数据
 writer.writerow(['name','age','tel']) # 单行写入row

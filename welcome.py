@@ -1,5 +1,6 @@
 # coding=utf-8
 
+# 一个比较标准的python程序
 def main():
     print 'welcome'
 

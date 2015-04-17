@@ -4,6 +4,7 @@ import ConfigParser
 import random # 导入random
 from pymongo import MongoClient # 导入Mongoclient
 
+# 连接mongodb，增insert，save删drop改查find
 config = ConfigParser.RawConfigParser()
 config.read(r'C:\Users\ieware\pyexercises\august.conf')
 
