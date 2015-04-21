@@ -2,7 +2,9 @@
 import os
 import time
 import shutil
-today = time.strftime('%Y/%m/%d %H:%M:%S week:%w')#today
+
+# 打印格式化时
+today = time.strftime('%Y/%m/%d %H:%M:%S week:%w')  # today
 print today
 
 '''os.path.sep ：#路径分隔符 。以前老爱用'\' ，windows返回'/'。
