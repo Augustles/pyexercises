@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# stackoverflow python问答
+# stackoverflow python list 问答
 import string,random
 
 # 列表
@@ -53,32 +53,31 @@ list2.pop()  # 默认删除最后一个元素
 print '10...'
 result = list2[-1]
 result1= list2.pop()
-# 取索引
-for index,x in enumerate(list2):print index,x
-#global list2 #  在函数使用global变成全局变量
-print '-'.join(list2)  # -为分隔符，把list转为str
-
-# 随机生成数字大小写的字符串
-print ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase+ string.digits) for x in range(7))
-print 'tadfasdfa'[::-1]  # 反序字串节
-# 将字符串转化成字典
-import ast
-print ast.literal_eval("{'a' : 'b', 'c' : 'd'}")  # 字符串内需对于字典内容
-# 填充字符串
-n = '3'
-print n.zfill(5)
-print '000007%d' %(int(n))
-print '{0:03d}'.format(5)
-
-
-# 将列表切成长度相同的序列
+# 11 将列表切成长度相同的序列
+print '11...'
 def chunks(l, n):  # n为要切成的序列
     return [l[i:i+n] for i in range(0, len(l), n)]
 print chunks(list2,3)
-# 列表去重 # sorted(list(set(list2))) 报错 unhashable type: 'list'???
+# 12 列表去重 # sorted(list(set(list2))) 报错 unhashable type: 'list'???
+print '12...'
 list3 = []
 for x in list2:
     if x not in list3:
         list3.append(x)
 print list3
+# 13 遍历一个list删除某些元素???
+print '13...'
+
+#ist2 = [x for x in list2 if list2(x)]
+#print list2
+# 14 获得list下标
+print '14...'
+print list2.index('c')
+
+
+
+
+
+
+
 
