@@ -1,7 +1,7 @@
 # coding=utf-8
 
 # python一切皆对象
-# 1)特殊方法与多范式 
+# 1)特殊方法与多范式
 # python中特殊方法(special method) __name__,__len__,
 # 连接字符串也是调用对象的特殊方法+ __add__(),内置函数
 # list元素的引用list[]就是__getitem__()方法,list[]即__setitem__(3,8),__delitem__('a')
