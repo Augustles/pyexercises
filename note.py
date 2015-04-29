@@ -1,4 +1,4 @@
-﻿# coding=utf-8
+# coding=utf-8
 
 # python一切皆对象
 # 1)特殊方法与多范式 
@@ -22,3 +22,11 @@
 # 垃圾回收(garbage collection),当python对象越来越多，python会在适当的时候启用垃圾回收
 
 
+# python__init__用来对你的对象进行一些初始化，__del__删除一个类的实例调用
+# python内置类属性__name__,__bases__,__dict__,__doc__,__module__
+# python内置函数 abs(),divmod,input,open,staticmethod,all,enmumerate,int,ord,str
+# any,eval_r,isinstance,pow,sum,basestring,execfile,issubclass,print,super
+# bin,file,iter,property,tuple,bool,filter,len,range,type,bytearray,float,list,raw_input,unichr
+# chr,frozenset,long,reload,vars,classmethod,getattr,map,repr,xrange,cmp,globals,max,reversed,zip
+# compile,hasattr,memoryview,round,__import__,complex,hash,min,set,apply,exec,eval
+# delattr,help,next,setattr,buffer,dict,hex,object,slice,coerce,dir,id,oct,sorted,reversed,intern
