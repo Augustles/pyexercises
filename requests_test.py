@@ -1,5 +1,6 @@
 # coding=utf-8
 
+# requests 中文乱码
 import requests # 导入requests，需要pip安装
 from bs4 import BeautifulSoup # 安装pip install beautifulsoup4
 r = requests.get('https://github.com/timeline.json') # 发送一个get请求，相应有post

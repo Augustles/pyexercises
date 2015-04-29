@@ -10,7 +10,7 @@ def tcplink(sock, addr):
     sock.send('Welcome!')
     while True:
         data = sock.recv(1024)
-        time.sleep(1)
+        time.sleep(1) # 程序休眠1秒
         if data == 'exit' or not data:
             break
         sock.send('Hello, %s!' % data)

@@ -1,6 +1,6 @@
 # coding =utf-8
 
-# ÏÂÔØzipÎÄ¼ş
+# ä¸‹è½½zipæ–‡ä»¶
 import urllib
 import urllib2
 import requests
@@ -8,7 +8,7 @@ url = 'http://www.blog.pythonlibrary.org/wp-content/uploads/2012/06/wxDbViewer.z
 r = requests.get(url)
 print 'request with loading'
 with open('code1.zip','wb') as code:
-    code.write(r.content) # ¶ş½øÖÆÏìÓ¦ÄÚÈİĞ´ÈëcodeÖĞ
+    code.write(r.content) # äºŒè¿›åˆ¶å“åº”å†…å®¹å†™å…¥codeä¸­
 print 'urllib loading'
 urllib.urlretrieve(url,'code.zip')
 print 'urllib2 loading'

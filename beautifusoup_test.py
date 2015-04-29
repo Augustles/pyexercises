@@ -3,12 +3,12 @@
 from bs4 import BeautifulSoup
 
 with open(r'c:\users\ieware\index.html') as f:
-    soup = BeautifulSoup(f) # ÓÃbeautifulsoup½âÎö
+    soup = BeautifulSoup(f) # ç”¨beautifulsoupè§£æ
     #print soup.title,soup.title.text,soup.title.name
     #print soup.head,soup.body,soup.p,soup.a,soup.find_all('a')
     print soup.a.text
     print soup.find_all('title'),soup('title')
-    #for link in soup.find_all('a'): # ÕÒµ½a±êÇ©
-        #print link.get('href') # »ñÈ¡Õû¸öÒ³ÃæËùÓĞÁ´½Ó
+    #for link in soup.find_all('a'): # æ‰¾åˆ°aæ ‡ç­¾
+        #print link.get('href') # è·å–æ•´ä¸ªé¡µé¢æ‰€æœ‰é“¾æ¥
 
-    #print soup.get_text() # »ñÈ¡ËùÓĞµÄÎÄ±¾ĞÅÏ¢
+    #print soup.get_text() # è·å–æ‰€æœ‰çš„æ–‡æœ¬ä¿¡æ¯
