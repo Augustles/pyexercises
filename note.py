@@ -37,6 +37,18 @@
 # 检查对象类型,ismodule(obj),is{class|function|method|builtin}(obj),isroutine(obj)是否可调用类型
 # 获取对象信息,getmembers(obj)dir,getmodule(obj),get{source|sourcelines}(obj)
 # getargspec(func)仅用于方法,getcallargs(func),getmro(cls)
+
+# 面向对象的三大特点,数据封装,继承,多态
+# 类class是创建实例的模版instance,实例是一个具体对象,每个实例可以拥有独立的属性
+# 继承是把父类的功能都拿过来,有了继承,才有多态
+# 多重继承,定制类,元类__slots__,@property,@metaclass,@staticmethod
+
+# python内置object对象,__new__创建类的实例,__init__初始化实例
+# __delattr__,getattrbute__,setattr__方法,处理属性的访问
+# __hash__,__repr__,__str__方法,print obj 会调用obj.__str__(),找不到则调用__repr__
+# __str__的目标是对象信息的可读性,__repr__的目标是对象信息的唯一性,用于程序调试
+
+
 # python内置函数 abs(),divmod,input,open,staticmethod,all,enmumerate,int,ord,str
 # any,eval_r,isinstance,pow,sum,basestring,execfile,issubclass,print,super
 # bin,file,iter,property,tuple,bool,filter,len,range,type,bytearray,float,list,raw_input,unichr
