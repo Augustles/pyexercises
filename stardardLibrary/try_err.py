@@ -4,7 +4,7 @@
 
 '''
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)  # 设置logging等级
 
 def foo(s):
     n = int(s)
@@ -25,7 +25,10 @@ import pdb
 
 s = '0'
 n = int(s)
-#pdb.set_trace()  # 运行到这里暂停进入pdb环境，命令p查看变量，n进入下一步,c继续
+'''
+pdb.set_trace() 运行到这里暂停进入pdb环境，命令p查看变量，n进入下一步,c继续,l显示源码
+q退出,a显示函数参数
+'''
 try:  # try来运行这段代码执行出错，则后续代码不会继续执行,跳到exceptp
     print 10/n
 except ZeroDivisionError, e:  # 具体错误,可以用Exception捕获所有异常
