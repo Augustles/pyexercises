@@ -23,9 +23,19 @@
 # alter talbe user_t_t type =myisam; # 修改user_t_t表类型为myisam???
 # alter table user_t add primary key(password); # 添加主键
 # alter table user_t drop primary key; # 删除主键
-# alter table user_t add index index_name(name); # 添加索引
+# alter table user_t add index index_name(name); # 添加索引,索引可以大大加快MySQL的检索速度
 # alter table user_t drop index name; # 删除索引
 # show index from user_t; # 查看索引,主键
+# show create table user_t; # 显示完整的user_t表结构
+
+# select * from test_a left  join test_b on test_a.name=test_b.name; # left join查询,左侧表里的信息全部查询出来,右边以NULL代替
+# select * from test_b right join test_b on test_a.name=test_b.name; # right join, 右侧表里的信息全部查询出来,左边以NULL代替
+# select * from test_a inner join test_b on test_a.name=test_b.name; # inner join,左右两边都相等才会查询显示
+
+
+# 查询数据库的容量
+# SELECT table_schema AS 'Db Name',Round( Sum( data_length + index_length ) / 1024 / 1024, 3 ) AS 'Db Size (MB)',
+# Round( Sum( data_free ) / 1024 / 1024, 3 ) AS 'Free Space (MB)' FROM information_schema.tables GROUP BY table_schema ;
 
 
 
@@ -34,5 +44,12 @@
 # select user(); 当前用户名
 # show status; 服务器状态
 # show variables; 服务器配置变量
+# 主键(primary key),主键也是一个特殊的索引
+# 外键(foreign key),外键用来建立或者和加强两个表数据之间的链接的一列或者多列
+# 外键约束主要用来维护两个表之间数据的一致性
+# 主键一定是唯一性索引,但唯一性索引不一定为主键
+# 一个表中只能有一个主键,可以有多个唯一性索引
+# 主键列不允许空值,唯一性索引允许空值
+# 主键能被其他字段作外键引用,索引不能作为外键引用
 #http://www.w3cschool.cc/mysql/mysql-alter.html
 #http://www.cnblogs.com/aspnethot/articles/1397130.html

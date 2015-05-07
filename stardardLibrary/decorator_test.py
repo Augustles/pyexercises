@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import time
+from functools import wraps
 # 装饰器，就是对函数，方法和类进行一种加工
 # decorator，函数log返回一个函数
 def log(text):
@@ -11,7 +12,7 @@ def log(text):
         return wrapper
     return decorator
 
-@log('execute') # 相当于执行now = log(now) now = log('execute')(now)
+@log('execute') # 相当于执行now = log('execute')(now),now = log(now)
 def now():
     t = time.time()
     return t
@@ -21,6 +22,7 @@ def benchmark(func):
     装饰器打印一个函数的执行时间
     '''
     import time
+    @wraps(func)
     def wrapper(*args,**kw):
         t = time.clock()
         res = func(*args,**kw)
@@ -32,6 +34,7 @@ def logging(func):
     '''
     装饰器记录函数日志
     '''
+    @wraps(func)
     def wrapper(*args,**kw):
         res = func(*args,**kw)
         print func.__name__,args,kw
@@ -42,6 +45,7 @@ def counter(func):
     '''
     记录并打印一个函数的执行次数
     '''
+    @wraps(func)
     def wrapper(*args,**kw):
         res = func(*args,**kw)
         print '{0} has been used: {1}x'.format(func.__name__,wrapper.count)
@@ -53,6 +57,7 @@ def now_human(func):
     记录时间
     '''
     import datetime
+    @wraps(func)
     def wrapper(*args,**kw):
         res = func(*args,**kw)
         now = datetime.datetime.now()
@@ -62,10 +67,35 @@ def now_human(func):
 
 @benchmark
 @logging
-@now_human
+@now_human # add = benchmark(logging(now_human(add))))
 def add(x,y):
     return x + y
+
+
+def hello(func):
+    ''' help doc '''
+    @wraps(func)
+    def wrapper(*args,**kw):
+        print 'hello,%s'%func.__name__
+        func(*args,**kw)
+        print 'goodbye, %s' %func.__name__
+    return wrapper
+
+@hello # plus = hello(plus)
+def plus(x,y):
+    ''' plus doc '''
+    return x*y
+
+def fuck(fn):
+    print "fuck %s!" % fn.__name__[::-1].upper()
+
+@fuck  ## wfg= fuck(wfg)
+def wfg():
+    pass
 
 if __name__ == '__main__':
     print now(),'\n',dir(log),'\n',dir(now) # 调用函数now,log装饰器和普通函数属性没有区别
     print add(3,6)
+    print add.__name__
+    print plus(3,9)
+    print plus.__doc__,plus.__name__

@@ -1,5 +1,7 @@
 # coding=utf-8
 
+# http://www.lintcode.com/
+# https://leetcode.com/
 # python一切皆对象
 # 1)特殊方法与多范式
 # python中特殊方法(special method) __name__,__len__,
