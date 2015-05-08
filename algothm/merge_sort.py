@@ -23,11 +23,14 @@ def merge_sort(list):
     else: result.extend(merge_sort(right))  
     return result
 
+
 '''
 def merge_sort(List):  
     mid=int(len(List)/2)  
-    if len(List)<=1:return List  
-    return merge(merge_sort(List[:mid]),merge_sort(List[mid:]))  
+    if len(List)<=1:
+        return List
+    else:
+        return merge(merge_sort(List[:mid]),merge_sort(List[mid:]))  
   
 def merge(l1,l2):  
     final=[]  
