@@ -1,8 +1,11 @@
 # coding=utf-8
 
 # http://www.lintcode.com/
+# http://visualgo.net/index.html
 # https://leetcode.com/
 # python一切皆对象
+# python中的数字,字符串和元祖的不可变主要体现在会新建一个引用
+# 字典和列表的可变主要是python改变了其引用
 # 1)特殊方法与多范式
 # python中特殊方法(special method) __name__,__len__,
 # 连接字符串也是调用对象的特殊方法+ __add__(),内置函数
@@ -23,7 +26,7 @@
 # 对象可以引用对象两个对象可能相互引用，构成引用环(reference count)
 # 引用对象减少,用del关键字删除某个引用
 # 垃圾回收(garbage collection),当python对象越来越多，python会在适当的时候启用垃圾回收
-
+# python任何递归函数都会存在栈溢出的可能
 
 # python__init__用来对你的对象进行一些初始化，__del__删除一个类的实例调用
 # python中属性和方法区别，属性是变量，方法是函数
@@ -48,12 +51,16 @@
 # python内置object对象,__new__创建类的实例,__init__初始化实例
 # __delattr__,getattrbute__,setattr__方法,处理属性的访问
 # __hash__,__repr__,__str__方法,print obj 会调用obj.__str__(),找不到则调用__repr__
-# __str__的目标是对象信息的可读性,__repr__的目标是对象信息的唯一性,用于程序调试
+# __str__的目标是对象信息的可读性,__repr__的目标是对象信息的唯一性,用于程序调试,面向解释器
 
 
+# 提高python性能的一些库,Numba,pypy,Nuitka,cython,Pyston  LLVM
 # python内置函数 abs(),divmod,input,open,staticmethod,all,enmumerate,int,ord,str
 # any,eval_r,isinstance,pow,sum,basestring,execfile,issubclass,print,super
 # bin,file,iter,property,tuple,bool,filter,len,range,type,bytearray,float,list,raw_input,unichr
 # chr,frozenset,long,reload,vars,classmethod,getattr,map,repr,xrange,cmp,globals,max,reversed,zip
 # compile,hasattr,memoryview,round,__import__,complex,hash,min,set,apply,exec,eval
 # delattr,help,next,setattr,buffer,dict,hex,object,slice,coerce,dir,id,oct,sorted,reversed,intern
+# ord('a'),#将字符转换成对应的ASCII码,chr(97),#将ASCII码转换成对应的字符
+
+
