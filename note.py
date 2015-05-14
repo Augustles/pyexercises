@@ -64,3 +64,5 @@
 # compile,hasattr,memoryview,round,__import__,complex,hash,min,set,apply,exec,eval
 # delattr,help,next,setattr,buffer,dict,hex,object,slice,coerce,dir,id,oct,sorted,reversed,intern
 # ord('a'),#将字符转换成对应的ASCII码,chr(97),#将ASCII码转换成对应的字符
+
+# python解释器全局锁(gil)可以通过好在现在 Python 易经筋（multiprocessing）, 吸星大法（C 语言扩展机制）和独孤九剑（ctypes）
