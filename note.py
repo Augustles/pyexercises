@@ -4,6 +4,8 @@
 # http://visualgo.net/index.html
 # https://leetcode.com/
 # python一切皆对象
+# python对象包含三个要素,id标识一个对象,is是用id判断
+# type标识对象的类型,value主要是==进行值的判断
 # python中的数字,字符串和元祖的不可变主要体现在会新建一个引用
 # 字典和列表的可变主要是python改变了其引用
 # 1)特殊方法与多范式
@@ -62,5 +64,3 @@
 # compile,hasattr,memoryview,round,__import__,complex,hash,min,set,apply,exec,eval
 # delattr,help,next,setattr,buffer,dict,hex,object,slice,coerce,dir,id,oct,sorted,reversed,intern
 # ord('a'),#将字符转换成对应的ASCII码,chr(97),#将ASCII码转换成对应的字符
-
-
