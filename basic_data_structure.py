@@ -1,5 +1,9 @@
 # coding=utf-8
 
+
+# 线性结构是研究元素之间一对一的关系
+# 树结构是研究元素直接一对多的关系,上下间的层级关系
+# 图结构是研究元素之间多对多的关系,任意元素都可能相关
 # 栈(stack)push,pop相当于list中的append,pop,队列(queue)也可以近似认为deque
 # 栈是一种后进先出(last in first off，LIFO)的的数据结构
 # 队列是一种先进先出(fisrt in first out，FIFO)的数据结构
