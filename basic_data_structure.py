@@ -5,3 +5,7 @@
 # 队列是一种先进先出(fisrt in first out，FIFO)的数据结构
 # 双端队列(deque),可以从两端弹出，插入和删除,from collections import queue
 # 堆(heap),在python中堆是一种特殊的列表,import heapq
+# 数(tree),树中至少有一个节点(根节点)(非空树),树中各子树互不相交的集合
+# 二叉树,度为2的有序树,每个节点至多有两颗子树,二叉树有左右之分
+# 二叉树右节点大于父节点,左节点都小于父节点
+# 图(graph)
