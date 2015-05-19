@@ -20,6 +20,9 @@ print sorted(list(set(list2)))  # 1）集合，直接用set集合去重
 ##list2.sort()  # 3) 排序后去重
 ##print [x for i,x in enumerate(list2) if not i or x!=list2[i-1]]
 
+# lst3 = []
+# [lst3.append(i) for i in lst3 if not i in list2]
+
 ##import itertools # 4) itertools,groupby
 ##list2.sort()
 ##print [x[0] for x in itertools.groupby(list2)]
@@ -30,7 +33,6 @@ print sorted(list(set(list2)))  # 1）集合，直接用set集合去重
 ##        list3.append(x)
 ##list3.sort()
 ##print list3
-
 
 ##list3 = reduce(lambda x,y: x if y in x else x+[y],[[],]+list2) # 6)reduce函数
 ##list3.sort()

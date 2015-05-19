@@ -66,3 +66,12 @@
 # ord('a'),#将字符转换成对应的ASCII码,chr(97),#将ASCII码转换成对应的字符
 
 # python解释器全局锁(gil)可以通过好在现在 Python 易经筋（multiprocessing）, 吸星大法（C 语言扩展机制）和独孤九剑（ctypes）
+
+
+# TCP三次握手,是指建立一个tcp链接时,需要客户端和服务端总共发送三个包
+# 未建立连接时Sequence numbe,和Acknowledgement Number都为0
+# client端发送连接syn报文,序列号为0,体现在传输层中Sequence number为0
+# server端接收后回复ack,此时ack和syn标志位都为1,将确认序号(Acknowledgement Number)设置为客户的ISN加1
+# client端再次向server端发送ack报文,syn标志位为0,
+# TCP四次挥手,是指tcp的连接拆除需要发送四个包
+# server端或者client端发送fin报文,server或者client端ack确认

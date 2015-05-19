@@ -72,7 +72,17 @@ print '13...'
 #print list2
 # 14 获得list下标
 print '14...'
-print list2.index('c')
+print ['a','b','c'].index('c')
+# 15 扁平化一个二维数组
+print '15...'
+lst1 = [[1,2,3],[4,5,6], [7], [8,9]]
+lst2 = [x for y in lst1 for x in y]
+# 16 列表解析和map
+print '16...'
+
+# 17 列表和元祖有什么区别
+print '17...'
+
 
 
 
