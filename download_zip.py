@@ -10,7 +10,7 @@ print 'request with loading'
 with open('code1.zip','wb') as code:
     code.write(r.content) # 二进制响应内容写入code中
 print 'urllib loading'
-urllib.urlretrieve(url,'code.zip')
+urllib.urlretrieve(url,'code.zip') # urllib下载
 print 'urllib2 loading'
 f = urllib2.urlopen(url)
 data = f.read()
