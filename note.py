@@ -3,7 +3,8 @@
 # http://www.lintcode.com/
 # http://visualgo.net/index.html
 # https://leetcode.com/
-# python一切皆对象
+# http://hackerxu.com/Twd/
+# python一切皆对象它们要么是类的实例，要么是元类的实例
 # python对象包含三个要素,id标识一个对象,is是用id判断
 # type标识对象的类型,value主要是==进行值的判断
 # python中的数字,字符串和元祖的不可变主要体现在会新建一个引用
