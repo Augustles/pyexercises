@@ -93,9 +93,27 @@ def fuck(fn):
 def wfg():
     pass
 
+def makebold(fn):
+    ''' 加粗字体 '''
+    def wrapper():
+        return "<b>" + fn() + "</b>"
+    return wrapper
+
+def makeitalic(fn):
+    ''' 斜体 '''
+    def wrapper():
+        return "<i>" + fn() + "</i>"
+    return wrapper
+
+@makeitalic
+@makebold
+def test123():
+    return 'hello'
+
 if __name__ == '__main__':
     print now(),'\n',dir(log),'\n',dir(now) # 调用函数now,log装饰器和普通函数属性没有区别
     print add(3,6)
     print add.__name__
     print plus(3,9)
     print plus.__doc__,plus.__name__
+    print test123()
