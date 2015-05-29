@@ -74,14 +74,24 @@ lst = ["Hello", "world"]
 # 40.how do i check a string is a number (float) in python
 b = "963b";print b.isdigit()
 # 41.how do you split a list into evenly sized chunks in python
-# 42.is there a way to substring a string in python
+import pprint
+def chunks(l, n):
+    for x in xrange(0, len(l), n):
+        yield l[x:x+n]
+pprint.pprint(list(chunks(range(10, 75), 10)))
+# 42.is there a way to substring a string in python 子串:采用切片
 # 43.check if a given key already exists in dictionary
+if 'tom' in x:print 1
 # 44.making a flat list out of lists in python [duplicate]
+lst1 = [[1,2,3],[4,5,6], [7], [8,9]]
+lst2 = [y for x in lst1 for y in x]
 # 45.peak detection in a 2d array
 # 46.how do i ramdomly select an item from a list using python
-# 47.how do sort a list of dictionaries by values of the dictionary in python
+import random
+foo = ['a', 'b', 'c', 'd', 'e']
+ran = random.choice(foo);print ran
+# 47.how do sort a list of dictionaries by values of the dictionary in python   同10
 # 48.how do i copy a file in python
 import shutil
 shutil.copy('vote_top.py', 'test.txt')
 # 49.why does python code run faster in a function
-

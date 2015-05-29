@@ -7,7 +7,7 @@ d = {'a':1,'b':2,'c':3}
 print '1...'
 dict2 = dict((key,value) for (key,value) in d.items());print dict2
 dict2 = {key:value for (key,value) in d.items()};print dict2
-# 使用in还是has_key()
+# 使用in还是has_key() in
 print '2...'
 print u'使用in更pythonic，has_key()在python3删除了'
 print 1 in d.values(),'a' in d

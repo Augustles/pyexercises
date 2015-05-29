@@ -3,7 +3,7 @@ import os,datetime
 
 
 try:
-    base_dir = r'd:\ttoo'
+    base_dir = 
 except OSError, e:
     print '没有这个文件',e
 list = os.listdir(base_dir)  # 得到一个包含文件和文件夹的列表
