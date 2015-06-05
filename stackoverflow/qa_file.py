@@ -15,11 +15,12 @@ text = "line 1\nline 2\r\nline 3\nline 4"
 text.splitlines();print text
 # 5 如何获取一个文件的创建时间和修改2015年5月19日时间
 import os.path, time
-print 'last modified: %s' %time.ctime(os.path.getmtime('qa_file.py'))
-print 'created: %s' %time.ctime(os.path.getctime('qa_file.py'))
+# print 'last modified: %s' %time.ctime(os.path.getmtime('qa_file.py'))
+# print 'created: %s' %time.ctime(os.path.getctime('qa_file.py'))
 # 6 如何将字符串转化为datetime
 from datetime import datetime
-date_object = datetime.strptime('Jun 1 2005  1:33PM', '%b %d %Y %I:%M%p')
+demo = datetime.strptime('Mon Mar 09 18:35:20 2015', '%a %b %d %H:%M:%S %Y')
+date_object = datetime.strptime('Jun 1 2015  1:33PM', '%b %d %Y %I:%M%p')
 print date_object
 # 7 如何找到一个目录下所有.txt文件
 import os
