@@ -36,3 +36,47 @@ d1 = datetime.date(2008, 9, 26)
 delta = d0 - d1;print delta.days
 # 17.python -doctest vs. unittest
 # 18.why is python's append not push
+# http://stackoverflow.com/questions/1566266/why-is-pythons-append-not-push
+# 19.create list of single item repreat n times in python
+# http://stackoverflow.com/questions/3459098/create-list-of-single-item-repeated-n-times-in-python
+# 20.python variable scope error
+# http://stackoverflow.com/questions/370357/python-variable-scope-error
+# 21.programmatically saving image to django imagefield
+# http://stackoverflow.com/questions/1308386/programmatically-saving-image-to-django-imagefield
+# 22.python --str__versus __unicode__
+# http://stackoverflow.com/questions/1307014/python-str-versus-unicode
+# 24.how to make a unaware datetime timezone aware in python
+# http://stackoverflow.com/questions/7065164/how-to-make-an-unaware-datetime-timezone-aware-in-python
+import datetime
+now =  datetime.datetime.now()
+print(now,now.year)
+# 25.iterating through a range of dates in python
+# http://stackoverflow.com/questions/1060279/iterating-through-a-range-of-dates-in-python
+# 26.what's the difference between raw_input() and input() in python3.x
+# 27.hello world in python
+# print('hello world!')
+# 28.how do i calculate the date six months from the current date using the datetime python module
+print(datetime.date.today() + datetime.timedelta(6*365/12)).isoformat()
+# 29.change one charater in a string in python
+# string.replace(old, new)
+# 30.how to exit from python without traceback
+# sys.exit()
+# 31.how do i override __getattr__ in python without breaking the default behavior
+# http://stackoverflow.com/questions/2405590/how-do-i-override-getattr-in-python-without-breaking-the-default-behavior
+# 32.implement touch using python
+# http://stackoverflow.com/questions/1158076/implement-touch-using-python
+# 33.what is a monkey patch
+# http://stackoverflow.com/questions/5626193/what-is-a-monkey-patch
+# 34.determine function name from within that function(without using traceback)
+# http://stackoverflow.com/questions/5067604/determine-function-name-from-within-that-function-without-using-traceback
+# 35.how to declare an array in python
+# http://stackoverflow.com/questions/1514553/how-to-declare-an-array-in-python
+# 36.bubble sort homework
+# http://stackoverflow.com/questions/895371/bubble-sort-homework
+# 37.matplolib legend makers only once
+# http://stackoverflow.com/questions/6146778/matplotlib-legend-markers-only-once
+# 38.how to initialize a two-dimensional array in python
+# http://stackoverflow.com/questions/2397141/how-to-initialize-a-two-dimensional-array-in-python
+# 39.python:importing modules from parent folder
+# 40.timestamp python
+
