@@ -4,6 +4,12 @@ import requests
 import urllib
 import chardet # 检测字符编码
 from bs4 import BeautifulSoup
+
+# 防止出现UnicodeEncodeError
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 url = 'http://www.liaoxuefeng.com/'
 testData = urllib.urlopen(url).read() # 读取内容
 r = requests.get(url) # 中文乱码???

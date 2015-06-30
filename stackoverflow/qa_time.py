@@ -26,6 +26,16 @@ print('{0}/{1}/{2} {3}:{4}:{5}'.format(now.year,now.month,now.day,now.hour,now.m
 print('{0}/{1}/{2} {3}:{4}:{5}'.format(s.tm_year,s.tm_mon,s.tm_mday,s.tm_hour,s.tm_min,s.tm_sec), type(s))
 t_date = datetime.datetime.fromtimestamp(t)
 print(t_date, type(t_date))
+
+
+# home_date = datetime.strptime(home_date,r"%Y/%m/%d")
+# if home_date < datetime(2014,12,15):
+#     continue
+# if home_date > datetime.now():
+#     continue
+# if datetime.now() > home_date + timedelta(days=60):
+#     continue
+
 # datetime convert to string
 datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 # string convert to datetime

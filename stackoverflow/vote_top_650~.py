@@ -1,9 +1,33 @@
 # coding=utf-8
 
-# stackoverflow vote top
+# vote_top_650+
 
+# 1.how do i disable log messages from the requests library
+# http://stackoverflow.com/questions/11029717/how-do-i-disable-log-messages-from-the-requests-library
+import logging
+logging.getLogger("requests").setLevel(logging.WARNING)
+# 2.delete folder contents in python
+import os,shutil
+for file in os.listdir('.'):
+    if os.path.isdir(file):
+        print(file)
+        shutil.rmtree(file)
+# 3.get key by value in dictionay
+l = ['tom', 'jim', 'lucy']
+d = {x:y for x,y in zip(l, range(3,7))}
+for x, y in d.iteritems(): # d.items()
+    if x == 'lucy':
+        print(y)
+# 4.python convert list to tuple
+t = tuple(l)
+# 5.how to clear python interpreter console
+clear = lambda: os.system('cls')
+clear()
+# 6.how to get the position of a character in python
+# string.find() ,index()
 # 导出pip freeze > requirements.txt
 # 安装pip install -r requirements.txt
+
 # 1.fill out a python string with spaces
 f = 't'
 print(f.zfill(3))
