@@ -30,6 +30,7 @@
 # 引用对象减少,用del关键字删除某个引用
 # 垃圾回收(garbage collection),当python对象越来越多，python会在适当的时候启用垃圾回收
 # python任何递归函数都会存在栈溢出的可能
+# ;可以把语句写在同一行,\可以语句为多行,(),[],{}不用\可以写成多行
 
 # python__init__用来对你的对象进行一些初始化，__del__删除一个类的实例调用
 # python中属性和方法区别，属性是变量，方法是函数
@@ -68,6 +69,7 @@
 
 # python解释器全局锁(gil)可以通过好在现在 Python 易经筋（multiprocessing）, 吸星大法（C 语言扩展机制）和独孤九剑（ctypes）
 
+# python 位运算,~非,&交集,>>,<<位移(转化为二进制移动),|并集,^只存在其中一方的
 
 # TCP三次握手,是指建立一个tcp链接时,需要客户端和服务端总共发送三个包
 # 未建立连接时Sequence numbe,和Acknowledgement Number都为0
