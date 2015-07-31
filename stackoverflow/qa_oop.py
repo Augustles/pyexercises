@@ -12,6 +12,16 @@
 # 使用new,但你需要控制一个实例的生成
 # 使用init,但你需要控制一个实例的初始化
 # new是实例创建的第一步,被优先调用,并且负责返回一个新的实例
+# 具体的类和实例
+class Add_demo:
+    def __init__(self,x,y): # 向__init__传递参数
+        self.x = x # 绑定参数
+        self.y = y
+    def add(self):
+        return self.x + self.y
+n = Add_demo(3,8) # 初始化实例
+n.add() # add()方法
+
 # 5.如何获取一个实例的类名
 x = len
 print x.__name__

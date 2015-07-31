@@ -6,6 +6,10 @@ import ast
 import re
 import time
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 list2 = ['a','b','c','d','db','thanks']
 str2 = 'welcome!'
 
@@ -81,3 +85,24 @@ b"abcde".decode('utf-8')
 # 取索引
 for index,x in enumerate(list2):print index,x
 #global list2 #  在函数使用global变成全局变量
+
+# windows 文本默认格式ansi,在sublime会乱码
+# UTF-8是Unicode的实现方式之一
+# 字符串可以编码成字节包, 字节包可以解码成字符串
+# 在utf8的文件中，字符串为utf8编码，在gb2312的文件中，编码为gb2312
+# decode() 其他编码转化成unicode编码
+# encode() unicode编码转为其他编码
+# b'\xe4\xb8\xad\xe6\x96\x87'
+s = '中文' # '\xe4\xb8\xad\xe6\x96\x87'
+s.encode('utf-8')
+unicode(s) # return u'\u4e2d\u6587'
+s.encode('utf-8') # '\xe4\xb8\xad\xe6\x96\x87'
+s = '\u4e2d\u6587'
+s.decode('unicode-escape')
+# 16进制转换
+'68656c6c6f'.decode("hex")
+from subprocess import check_output
+t = check_output('ipconfig')
+t.decode('gbk')
+
+
