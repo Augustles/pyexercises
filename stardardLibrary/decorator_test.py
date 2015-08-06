@@ -61,7 +61,7 @@ def now_human(func):
     def wrapper(*args,**kw):
         res = func(*args,**kw)
         now = datetime.datetime.now()
-        print '现在是北京时间{0}:{1}:{2},{3}/{4}/{5}'.format(now.hour,now.minute,now.second,now.day,now.month,now.year)  # .format()格式化字符串
+        print u'现在是北京时间{0}:{1}:{2},{3}/{4}/{5}'.format(now.hour,now.minute,now.second,now.day,now.month,now.year)  # .format()格式化字符串
         return res
     return wrapper
 

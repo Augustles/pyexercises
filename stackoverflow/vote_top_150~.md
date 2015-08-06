@@ -49,21 +49,21 @@ apt-get install libmysqlclient-dev python-dev
 120. use different python version with virtualenv   vitualenv & virtualenvwrapper
 virtualenv -p /usr/bin/python2.6 <path/to/new/virtualenv/>
 121. what do people write #!/usr/bin/env python on the python on the first line of a python script
-122. how can i caount the occurrences of a list item in python
+122. how can i count the occurrences of a list item in python
 x = range(3,9) + [3,7,3,3,9,3]
 print x.count(3)
 123. python multithreading for dummies
-link:http://stackoverflow.com/questions/2846653/python-multithreading-for-dummies
+http://stackoverflow.com/questions/2846653/python-multithreading-for-dummies
 124. python setup.py uninstall
 python setup.py install --record files.txt
 cat files | xrags rm -rf
-link:http://stackoverflow.com/questions/1550226/python-setup-py-uninstall
+http://stackoverflow.com/questions/1550226/python-setup-py-uninstall
 125. how do i protect python code
-link:http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
+http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
 126. limiting floats to two decimal points
 print '{0:.3f}'.format(13.949999988079071)
 127. mkdir -p funtionality in python
-link:http://stackoverflow.com/questions/600268/mkdir-p-functionality-in-python
+http://stackoverflow.com/questions/600268/mkdir-p-functionality-in-python
 128. how to get line count cheaply in python
 num_lines = sum(1 for line in open('vote_top_101_150.py'));print num_lines
 129. terminating a python script   终止
@@ -72,15 +72,15 @@ sys.exit()
 130. how to acess environment varibles from python
 print sys.prefix,os.environ
 131. if python is interpreted,what are .pyc files
-link:http://stackoverflow.com/questions/2998215/if-python-is-interpreted-what-are-pyc-files
+http://stackoverflow.com/questions/2998215/if-python-is-interpreted-what-are-pyc-files
 132. how do i download a file over http using python
-link:http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
+http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
 133. how to import a module given the full path
 import imp
 foo = imp.load_source('module.name', '/path/to/file.py')
 foo.MyClass()
 134. is there a function in python to print all the current properties and values of an object
-link:http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of
+http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of
 from pprint import pprint
 pprint(vars(__builtins__))
 135. how can i tell if a string repeats itself in python
@@ -89,28 +89,28 @@ http://stackoverflow.com/questions/29481088/how-can-i-tell-if-a-string-repeats-i
 sys.version
 137.'has_key()' or 'in'   in
 138. is there any way to kill a thread in python
-link:http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
+http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
 139. json datetime between python and javascript
-link:http://stackoverflow.com/questions/455580/json-datetime-between-python-and-javascript
+http://stackoverflow.com/questions/455580/json-datetime-between-python-and-javascript
 140. behaviour of increment and decrement operators in python   ++count  a += 1
-link:http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
+http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
 141. multiline commet in python   多行注释
 142. convert hex string int in python
 int(hex(11),16), int(oct(22),8)
 143. should you always favor xrange() over ranger()   range()
 144. what is a clean,pythonic way to have multiple construtors in python
-link:http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
+http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
 146. how do you remove duplicates from a list in python whilst preserving order
-link:http://stackoverflow.com/questions/480214/how-do-you-remove-duplicates-from-a-list-in-python-whilst-preserving-order
+http://stackoverflow.com/questions/480214/how-do-you-remove-duplicates-from-a-list-in-python-whilst-preserving-order
 147. remove items from a list while iterating in python
 148. how do i delete a file or folder in python
 os.remove(fp) will remove a file
 os.rmdir(fp) will remove an empty dirctory
 shutil.rmtree(dir) will delete a dir and its all contents
 149 what is the best project structure for a python application
-link:http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application
+http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application
 150. convert bytes to a python string
-link:http://stackoverflow.com/questions/606191/convert-bytes-to-a-python-string
+http://stackoverflow.com/questions/606191/convert-bytes-to-a-python-string
 151. how do i check if a variable exists in python
 if 'var' in locals():print 1
 if 'var' in globals():print 1

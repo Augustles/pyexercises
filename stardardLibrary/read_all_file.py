@@ -1,3 +1,4 @@
+# coding=utf-8
 import os,os.path
 import ipdb # pip install ipdb 彩色pdb
 
@@ -9,3 +10,4 @@ for x in os.listdir(base_dir):
         path = base_dir + "/" + x + '\n'
         with open('tst.txt','a') as f:
             f.write(path)
+            print(path)
