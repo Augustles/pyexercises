@@ -5,29 +5,45 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 from bs4 import BeautifulSoup
 import requests
+import os,re
+import time
+
+t_sumary = []
+t_pic = []
+t_review = []
+headers = {
+    'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36',
+    }
 
 # 获取简介
 def get_sumary(url):
-    r = requests.get(url)
+    t1 = time.time()
+    s = requests.Session()
+    r = requests.get(url, headers = headers)
     soup = BeautifulSoup(r.text)
     actors = []
     for a in soup.find_all('a', attrs = {'rel':'v:starring'}):
         actors.append(unicode(a.text)+' ')
     for v in soup.find_all(id='link-report'):
-        with open('sumary.txt','a') as a:
-            global sub
-            sub = unicode(soup.title.text)[:-5].strip()
-            print(u'开始获取<<{0}>>简介...'.format(sub))
-            a.write(sub + u'\n')
+        global sub
+        sub = unicode(soup.title.text)[:-5].strip()
+        file_sumary = unicode(sub)+u' 简介'+u'.txt'
+        print(u'...开始获取<<{0}>>简介...'.format(sub))
+        with open(file_sumary,'a') as a:
+            a.write(u'剧名: '+sub + u'\n' + u'主演: ')
             a.writelines(actors)
             y = unicode(v.span.text).strip()
-            a.write('\n'+''.join(y.split())+'\n')
+            a.write('\n'+u'简介: '+''.join(y.split())+'\n')
+    t2 = time.time()
+    t3 = t2 - t1
+    t_sumary.append(t3)
     print('get_sumary done')
 
 # 获取照片
 def get_pic(url):
+    t1 = time.time()
     print('downloading <<{0}>> pictures...'.format(sub))
-    r = requests.get(url)
+    r = requests.get(url,headers=headers)
     soup = BeautifulSoup(r.text)
     d = []
     for pic in soup.find_all('a'):
@@ -39,18 +55,23 @@ def get_pic(url):
                     if 'albumicon' in str(item.img['src']):
                         if str(item.img['src']) not in d:
                             d.append(str(item.img['src']).replace('albumicon','photo'))
+    d = list(set(d)) # qu去除重复的项
     for pic in d:
         file = pic[pic.rindex('/p')+1:]
         r = requests.get(pic)
         with open(file,'wb') as w:
             w.write(r.content)
+    t2 = time.time()
+    t3 = t2 - t1
+    t_pic.append(t3)
     print('download jpg done')
 
 
 # 获取影评
 def get_review(url):
-    print(u'获取<<{0}>>热点影评...'.format(sub))
-    r = requests.get(url)
+    t1 = time.time()
+    print(u'...获取<<{0}>>热点影评...'.format(sub))
+    r = requests.get(url,headers=headers)
     soup = BeautifulSoup(r.text)
     files = {}
     reviews = []
@@ -65,51 +86,93 @@ def get_review(url):
             for body in soup1.find_all('div', attrs={'property':'v:description'}):
                 file = str(title['content']) + '.txt'
                 files[file] = unicode(body.text)
+
     for x,y in files.items():
-        with open(x.decode('utf8'),'w') as w:
-            print(x)
-            w.write(x[:-4] + '\n')
-            w.write(y)
+        x = re.sub('[?|<>,/\:*"]',' ',x)
+        try:
+            with open(x.decode('utf8'),'w') as w:
+                w.write(x[:-4] + '\n')
+                w.write(y)
+        except Exception,e:
+            with open('down.log','a') as a:
+                a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S')+' <=> '+e.message)
+    t2 = time.time()
+    t3 = t2 - t1
+    t_review.append(t3)
     print('get_review done')
 
 # 获取subjects
 def get_subjects(doulists):
-    global names, links
+    print('...start project...')
+    start = time.time()
     subjects = {}
     f = range(0,300,25)
-    import re,os
     for n in f:
         num = 'start='+ str(n)
         url = re.sub(r'start\=\d+', num, doulists)
-        r = requests.get(url)
+        r = requests.get(url, headers=headers)
         soup = BeautifulSoup(r.text)
         for joke in soup.find_all('div', attrs={'class':'title'}):
             sub = joke.text.strip()
             subjects[sub] = joke.a['href']
-
-    print(u'豆列有{0}项...'.format(len(subjects)))
+    print(u'...本豆列有{0}项...'.format(len(subjects)))
     pre_path = os.getcwd()
-    for x,y in subjects.items():
+    for item in zip(range(1,len(subjects)+1),subjects.keys(),subjects.values()):
+        global sub_id
+        sub_id = item[0]
+        x = item[1]
+        y = item[2]
+        print(u'开始第 {0} 个subject < {1} >'.format(sub_id,y))
         if not os.path.exists(x):
-            os.mkdir(x)
+            # 文件名中不允许出现字符/\:*?
+            remove = ['/','\\',':','*','?','\"','<','>','|']
+            x = re.sub('[?|<>,/\:*"]','',x)
+            try:
+                os.mkdir(x)
+            except Exception,e:
+                with open('down.log','a') as a:
+                    a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S')+' <=> '+e.message)
         else:
-            continue
+            continue  
         os.chdir(x)
+        # 多进程
+        # import multiprocessing
+        # lock  = multiprocessing.Lock()
+        # queue = multiprocessing.Queue(3)
+
         get_sumary(y)
-        get_pic(y)
         get_review(y)
+        get_pic(y)
         os.chdir(pre_path)
     # 判断doulists是否完成
     if len([dir for dir in os.listdir(pre_path)]) < len(subjects) + 1:
         get_subjects(doulists)
     else:
-        print(u'下载已经全部完成... ...')
+        end = time.time()
+        spend = (end - start) / 60
+        print(u'...下载已经完成, 总共花费 <{0:.2f}> mins...'.format(spend))
+        print(u'sumary用时{0:.2f}'.format(sum(t_sumary)/60,))
+        print(u'review用时{0:.2f}'.format(sum(t_review)/60,))
+        print(u'pic用时{0:.2f}'.format(sum(t_pic)/60,))
 
 doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
 
 url = u'http://movie.douban.com/subject/10491666/'
-sub = '10491666'
 # get_sumary(url)
 # get_pic(url)
 # get_review(url)
-get_subjects(doulists)
+
+# 记录异常
+try:
+    get_subjects(doulists)
+except:
+    f = open('down_review.log','a')
+    import traceback
+    f.write('\nError: <=> \n')
+    f.write(time.strftime('%Y-%m-%d %H:%M:%S')+' <=> ')
+    traceback.print_exc(file=f)
+    f.flush()
+    f.close()
+finally:
+    with open('down.log','a') as a:
+        a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S') + u' <=> 完成 {0} 下载'.format(doulists))
