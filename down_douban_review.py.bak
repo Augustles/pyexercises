@@ -7,12 +7,15 @@ from bs4 import BeautifulSoup
 import requests
 import os,re
 import time
+import multiprocessing
 
 t_sumary = []
 t_pic = []
 t_review = []
+# headers可能导致403
 headers = {
-    'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36',
+    'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:39.0) Gecko/20100101 Firefox/39.0',
+    'Cookie':'bid="KkJmbgQSS6U"; ll="118282"; _ga=GA1.2.1950220588.1437556212; ct=y; viewed="3434316"; __utma=30149280.1950220588.1437556212.1438845723.1438853846.11; __utmz=30149280.1438242497.8.4.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; ps=y; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1439368832%2C%22http%3A%2F%2Fmovie.douban.com%2Fsubject%2F25953663%2Fdoulists%22%5D; bid="PUmaYqiOax8"; ll="118282"; _pk_ses.100001.8cb4=*; Hm_lvt_f5127c6793d40d199f68042b8a63e725=1439369662; Hm_lpvt_f5127c6793d40d199f68042b8a63e725=1439370508; _5t_trace_sid=41869e0c1e7f41b8993ffdba678fd0cb; _5t_trace_tms=1; dbcl2="65041622:VIWA/NF86AU"; ck="N76w"; push_noty_num=0; push_doumail_num=6; ap=1; push_noty_num=0; push_doumail_num=6; _pk_id.100001.8cb4=c1bceaa5c239e3f5.1437556262.22.1439458972.1439366798.; _pk_ses.100001.8cb4=*; ap=1',
     }
 
 # 获取简介
@@ -55,7 +58,7 @@ def get_pic(url):
                     if 'albumicon' in str(item.img['src']):
                         if str(item.img['src']) not in d:
                             d.append(str(item.img['src']).replace('albumicon','photo'))
-    d = list(set(d)) # qu去除重复的项
+    d = list(set(d)) # 去除重复的项
     for pic in d:
         file = pic[pic.rindex('/p')+1:]
         r = requests.get(pic)
@@ -105,45 +108,50 @@ def get_review(url):
 def get_subjects(doulists):
     print('...start project...')
     start = time.time()
+    global subjects
     subjects = {}
     f = range(0,300,25)
     for n in f:
         num = 'start='+ str(n)
         url = re.sub(r'start\=\d+', num, doulists)
         r = requests.get(url, headers=headers)
+        print(r.status_code)
         soup = BeautifulSoup(r.text)
         for joke in soup.find_all('div', attrs={'class':'title'}):
             sub = joke.text.strip()
             subjects[sub] = joke.a['href']
     print(u'...本豆列有{0}项...'.format(len(subjects)))
+    # 多进程测试
+    return subjects
     pre_path = os.getcwd()
     for item in zip(range(1,len(subjects)+1),subjects.keys(),subjects.values()):
         global sub_id
         sub_id = item[0]
         x = item[1]
         y = item[2]
-        print(u'开始第 {0} 个subject < {1} >'.format(sub_id,y))
         if not os.path.exists(x):
+            print(u'开始第 {0} 个subject < {1} >'.format(sub_id,y))
             # 文件名中不允许出现字符/\:*?
             remove = ['/','\\',':','*','?','\"','<','>','|']
             x = re.sub('[?|<>,/\:*"]','',x)
             try:
                 os.mkdir(x)
+                os.chdir(x)
+                get_sumary(y)
+                #get_review(y)
+                #get_pic(y)
             except Exception,e:
                 with open('down.log','a') as a:
                     a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S')+' <=> '+e.message)
         else:
-            continue  
-        os.chdir(x)
-        # 多进程
-        # import multiprocessing
-        # lock  = multiprocessing.Lock()
-        # queue = multiprocessing.Queue(3)
+            print(u'忽略第 {0} 个subject < {1} > 已存在!!!'.format(sub_id,y))
+            # with open('down.log','a') as a:
+            #     a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S')+' <=> '+u'忽略第 {0} 个subject < {1} > 已存在!!!'.format(sub_id,y))
+            # continue  
 
-        get_sumary(y)
-        get_review(y)
-        get_pic(y)
+
         os.chdir(pre_path)
+        
     # 判断doulists是否完成
     if len([dir for dir in os.listdir(pre_path)]) < len(subjects) + 1:
         get_subjects(doulists)
@@ -156,23 +164,49 @@ def get_subjects(doulists):
         print(u'pic用时{0:.2f}'.format(sum(t_pic)/60,))
 
 doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
-
+# doulists1 = 'http://www.douban.com/doulist/3151243/?start=25&sort=time&sub_type='
 url = u'http://movie.douban.com/subject/10491666/'
 # get_sumary(url)
 # get_pic(url)
 # get_review(url)
 
 # 记录异常
-try:
-    get_subjects(doulists)
-except:
-    f = open('down_review.log','a')
-    import traceback
-    f.write('\nError: <=> \n')
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S')+' <=> ')
-    traceback.print_exc(file=f)
-    f.flush()
-    f.close()
-finally:
-    with open('down.log','a') as a:
-        a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S') + u' <=> 完成 {0} 下载'.format(doulists))
+# try:
+#     get_subjects(doulists)
+# except:
+#     f = open('down.log','a')
+#     import traceback
+#     f.write('\nError: <=> \n')
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S')+' <=> ')
+#     traceback.print_exc(file=f)
+#     f.flush()
+#     f.close()
+# finally:
+#     with open('down.log','a') as a:
+#         a.write('\n'+time.strftime('%Y-%m-%d %H:%M:%S') + u' <=> 完成 {0} 下载'.format(doulists))
+
+# 多进程实践
+get_subjects(doulists)
+links = subjects.values()
+def test_process(link):
+    print(time.strftime('%Y-%m-%d %H:%M:%S') + 'test_process start...')
+    r = requests.get(link,headers=headers)
+    print(r.status_code)
+    soup = BeautifulSoup(r.text)
+    print(soup.title.text)
+
+# for link in links:
+#     get_sumary(link)
+if __name__ == '__main__':
+    try:
+        # 作用于线程
+        # pool = multiprocessing.Pool(processes=10)
+        # # links为一个序列
+        # result = pool.map_async(get_sumary, links).get(240)
+        
+        # 作用于进程,需import dummy否则提示没有dummy
+        from multiprocessing import dummy
+        pool = dummy.Pool(processes=10)
+        result = pool.map_async(get_sumary, links).get(240)
+    except Exception,e:
+        print e

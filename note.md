@@ -68,7 +68,6 @@ __delattr__,getattrbute__,setattr__方法,处理属性的访问
 __hash__,__repr__,__str__方法,print obj 会调用obj.__str__(),找不到则调用__repr__
 __str__的目标是对象信息的可读性,__repr__的目标是对象信息的唯一性,用于程序调试,面向解释器
 
-提高python性能的一些库,Numba,pypy,Nuitka,cython,Pyston  LLVM
 ### python内置函数
 abs(),divmod,input,open,staticmethod,all,enmumerate,int,ord,str
 any,eval,isinstance,pow,sum,basestring,execfile,issubclass,print,super
@@ -79,8 +78,19 @@ delattr,help,next,setattr,buffer,dict,hex,object,slice,coerce,dir,id,oct,sorted,
 
 ord('a'),#将字符转换成对应的ASCII码,chr(97),#将ASCII码转换成对应的字符
 uiord('a'),将字符串转化unicode字符串,unichr(97),将97
-每一个interpreter进程,只能同时仅有一个线程来执行, 获得相关的锁, 存取相关的资源
-python解释器全局锁(gil)可以通过好在现在 Python 易经筋（multiprocessing）, 吸星大法（C 语言扩展机制）和独孤九剑（ctypes）
+多进程=>多线程=>非阻塞(io异步)=>协程=>(分布式进程)
+Windows下,多线程的效率比多进程要高
+进程是资源分配的最小单位,线程是CPU调度的最小单位
+多任务的实现,通常设计master-worker,master负责分配任务,worker负责执行任务
+进程(process)是程序在计算机上的一次执行活动,多进程,开销大,较稳定,在Windows下创建进程开销巨大,子进程相互不影响
+线程(thread)是可执行代码的可分配单元,多线程,开销小,稳定性差,一个线程出现问题,导致整个程序崩溃
+解释器全局锁gil是指每一个interpreter进程,只能同时仅有一个线程来执行, 获得相关的锁, 存取相关的资源
+python解释器全局锁(gil)可以通过好在现在 Python 易经筋（multiprocessing）, 吸星大法（C语言扩展机制）和独孤九剑（ctypes）
+提高python性能的一些库,Numba,pypy,Nuitka,cython,Pyston  LLVM
+
+计算密集型任务由于主要消耗CPU资源,因此,代码运行效率至关重要,最好用c语言编写,multiprocessing(作用于线程)
+
+IO密集型:涉及到网络、磁盘IO的任务都是IO密集型任务，这类任务的特点是CPU消耗很少,任务的大部分时间都在等待IO操作完成,IO密集型任务最合适的语言是开发效率高,multiprocessing.dummy(作用于进程)
 
 python 位运算,~非,&交集,>>,<<位移(转化为二进制移动),|并集,^只存在其中一方的
 ### TCP三次握手

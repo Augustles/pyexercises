@@ -4,18 +4,35 @@
 import os
 
 ##print 'process (%s) start...' % os.getpid()  # 获取父进程pid
-##pid = os.fork()
+##pid = os.fork() fork的系统调用只存在linux/unix中
 
-from multiprocessing import Process
+import multiprocessing
 
-def run_proc(name):
-    return 'run child process %s' %os.getpid()
+# def run_proc(name):
+#     return 'run child process %s' %os.getpid()
+
+# if __name__ == '__main__':
+#     print 'parent process %s'%os.getpid()
+#     p = multiprocessing.Process(target=run_proc,args=('test',))
+#     print 'process will start'
+#     p.start()
+#     print p
+#     p.join()
+#     print 'process end.'
+
+def printf(x):
+    print(x)
+
+l = range(3,90000)
+l.insert(0,'hello')
+l.append('august')
 
 if __name__ == '__main__':
-    print 'parent process %s'%os.getpid()
-    p = Process(target=run_proc,args=('test',))
-    print 'process will start'
-    p.start()
-    print p
-    p.join()
-    print 'process end.'
+    # processes需合理设置
+    pool = multiprocessing.Pool(processes=2)
+    # 相当于for循环执行l里的元素
+    # printf为执行的函数, l为要执行的序列元素
+    result = pool.map_async(printf,l).get(120)
+
+
+
