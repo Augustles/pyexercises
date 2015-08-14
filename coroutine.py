@@ -8,7 +8,7 @@ import re
 def consumer():
     r = ''
     while True:
-        # 接收produce的n值
+        # 接收produce的n值,并传递r值
         n = yield r
         # if not n:
         #     return
@@ -37,6 +37,7 @@ def produce(c):
         send(arg) -> send 'arg' into generator,
         return next yielded value or raise StopIteration.
         '''
+        # 发送n到生成器，返回yield实例next值
         r = c.send(n)
         print('[PRODUCER] Consumer return: %s' % r)
 
