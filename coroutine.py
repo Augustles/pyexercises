@@ -4,31 +4,37 @@
 # 协程
 import time
 import re
+from bs4 import BeautifulSoup as bs
+import requests
 
 def consumer():
     r = ''
     while True:
         # 接收produce的n值,并传递r值
-        n = yield r
+        url = yield r
         # if not n:
         #     return
-        print('[CONSUMER] consuming %s...' % n)
+        print('[CONSUMER] consuming %s...' % url)
         time.sleep(1)
-        r = '200 OK'
-        x = 'hello'
+        r = requests.get(url)
+        r = r.status_code
+
+        # r = '200 OK'
 
 def produce(c):
     '''x.next() -> the next value'''
     c.next() # next启动进入consumer的生成器
-    # links = []
-    # n = 0
-    # f = range(0,300,25)
-    # for n in f:
-    #     num = 'start='+ str(n)
-    #     url = re.sub(r'start\=\d+', num, doulists)
-    #     links.append(url)
+    links = []
     n = 0
-    while n < 5:
+    f = range(0,300,25)
+    for n in f:
+        num = 'start='+ str(n)
+        url = re.sub(r'start\=\d+', num, doulists)
+        links.append(url)
+
+    n = 0
+    print(len(links))
+    while n < len(links)/2+1:
         n = n + 1
         print('[PRODUCER] Producing %s...' % n)
         # 切换到consumer执行,consumer完成后,继续执行produce
@@ -38,8 +44,16 @@ def produce(c):
         return next yielded value or raise StopIteration.
         '''
         # 发送n到生成器，返回yield实例next值
-        r = c.send(n)
+        url = links[n]
+        # t = requests.get(url)
+        # t = t.status_code
+        # print(t)
+        r = c.send(url)
+        t = requests.get(links[n+1])
+        f = links[n+1]
+        print('{0},{1},{2}'.format(n,t.status_code,f))
         print('[PRODUCER] Consumer return: %s' % r)
+        n = n+1
 
 
     c.close() # 关闭生成器
@@ -48,6 +62,7 @@ doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
 
 produce(consumer())
 
+# 协程主要体现在等待io，数据处理时候，然后处理其他执行体，再回来执行
 # produce向consumer发送n值,
 # consumer向produce发送r值,相互交换
 # 先执行一段,然后在执行其他,再回来执行剩下代码

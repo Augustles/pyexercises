@@ -1,4 +1,11 @@
 # python小结
+### 特殊
+1. 列表解析(表达式)
+	l = [x for x in range(3,7)]
+2. 词典解析
+	d = {x:y for x,y in zip(range(3,7),['tom','jack'])}
+3. 生成器解析(表达式)
+	g ＝ (x for x in range(3,7))
 ###string
 	s = 'hello august'
 1. s.capitalize() 首字母大写
