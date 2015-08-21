@@ -109,7 +109,7 @@ def makeitalic(fn):
     return wrapper
 
 @makeitalic
-@makebold
+@makebold # 相当于 makebold(test123())
 def test123():
     return 'hello'
 

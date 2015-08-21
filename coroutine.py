@@ -77,3 +77,23 @@ produce(consumer())
 # 整个流程无锁，由一个线程执行，produce和consumer协作完成任务，所以称为“协程”，而非线程的抢占式多任务。
 # 最后套用Donald Knuth的一句话总结协程的特点：
 # “子程序就是协程的一种特例。”
+
+
+# def worker():
+#     s = ''
+#     while True:
+#         x = yield s
+#         with open(x,'r') as r:
+#             for s in r:
+#                 pass
+
+
+# def master(c):
+#     c.next()
+#     l = []
+#     for x in os.listdir('.'):
+#         s = c.send(x)
+#         l.append(s)
+#     c.close()
+
+# master(worker())
