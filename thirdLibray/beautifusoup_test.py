@@ -9,6 +9,8 @@ with open(r'c:\users\ieware\index.html') as f:
     print soup.a.text
     print soup.find_all('title'),soup('title')
     for link in soup.find_all('a'): # 找到a标签
+        print link['href']
     #     print link.get('href') # 获取整个页面所有链接
-
+    soup.find('div',attrs={'class':'title'})
+    soup.find('div',attrs={'class':None,'id':True}) # limit=3返回限定3数量
     # print soup.get_text() # 获取所有的文本信息
