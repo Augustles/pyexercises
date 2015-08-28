@@ -6,61 +6,62 @@ import time
 import re
 from bs4 import BeautifulSoup as bs
 import requests
+import os
 
-def consumer():
-    r = ''
-    while True:
-        # 接收produce的n值,并传递r值
-        url = yield r
-        # if not n:
-        #     return
-        print('[CONSUMER] consuming %s...' % url)
-        time.sleep(1)
-        r = requests.get(url)
-        r = r.status_code
+# def consumer():
+#     r = ''
+#     while True:
+#         # 接收produce的n值,并传递r值
+#         url = yield r
+#         # if not n:
+#         #     return
+#         print('[CONSUMER] consuming %s...' % url)
+#         time.sleep(1)
+#         r = requests.get(url)
+#         r = r.status_code
 
-        # r = '200 OK'
+#         # r = '200 OK'
 
-def produce(c):
-    '''x.next() -> the next value'''
-    c.next() # next启动进入consumer的生成器
-    links = []
-    n = 0
-    f = range(0,300,25)
-    for n in f:
-        num = 'start='+ str(n)
-        url = re.sub(r'start\=\d+', num, doulists)
-        links.append(url)
+# def produce(c):
+#     '''x.next() -> the next value'''
+#     c.next() # next启动进入consumer的生成器
+#     links = []
+#     n = 0
+#     f = range(0,300,25)
+#     for n in f:
+#         num = 'start='+ str(n)
+#         url = re.sub(r'start\=\d+', num, doulists)
+#         links.append(url)
 
-    n = 0
-    print(len(links))
-    while n < len(links)/2+1:
-        n = n + 1
-        print('[PRODUCER] Producing %s...' % n)
-        # 切换到consumer执行,consumer完成后,继续执行produce
-        '''
-        Docstring:
-        send(arg) -> send 'arg' into generator,
-        return next yielded value or raise StopIteration.
-        '''
-        # 发送n到生成器，返回yield实例next值
-        url = links[n]
-        # t = requests.get(url)
-        # t = t.status_code
-        # print(t)
-        r = c.send(url)
-        t = requests.get(links[n+1])
-        f = links[n+1]
-        print('{0},{1},{2}'.format(n,t.status_code,f))
-        print('[PRODUCER] Consumer return: %s' % r)
-        n = n+1
+#     n = 0
+#     print(len(links))
+#     while n < len(links)/2+1:
+#         n = n + 1
+#         print('[PRODUCER] Producing %s...' % n)
+#         # 切换到consumer执行,consumer完成后,继续执行produce
+#         '''
+#         Docstring:
+#         send(arg) -> send 'arg' into generator,
+#         return next yielded value or raise StopIteration.
+#         '''
+#         # 发送n到生成器，返回yield实例next值
+#         url = links[n]
+#         # t = requests.get(url)
+#         # t = t.status_code
+#         # print(t)
+#         r = c.send(url)
+#         t = requests.get(links[n+1])
+#         f = links[n+1]
+#         print('{0},{1},{2}'.format(n,t.status_code,f))
+#         print('[PRODUCER] Consumer return: %s' % r)
+#         n = n+1
 
 
-    c.close() # 关闭生成器
+#     c.close() # 关闭生成器
 
-doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
+# doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
 
-produce(consumer())
+# produce(consumer())
 
 # 协程主要体现在等待io，数据处理时候，然后处理其他执行体，再回来执行
 # produce向consumer发送n值,
@@ -92,8 +93,104 @@ produce(consumer())
 #     c.next()
 #     l = []
 #     for x in os.listdir('.'):
-#         s = c.send(x)
-#         l.append(s)
+#         if os.path.isfile(x):
+#             print x
+#             s = c.send(x)
+#             l.append(s)
 #     c.close()
 
 # master(worker())
+
+
+# import time
+
+# def consumer():
+#     r = ''
+#     while True:
+#         n = yield r
+#         if not n:
+#             return
+#         print('[CONSUMER] Consuming %s...' % n)
+#         time.sleep(1)
+#         r = '200 OK'
+
+# def produce(c):
+#     c.next()
+#     n = 0
+#     while n < 5:
+#         n = n + 1
+#         print('[PRODUCER] Producing %s...' % n)
+#         r = c.send(n)
+#         print('[PRODUCER] Consumer return: %s' % r)
+#     c.close()
+
+# if __name__=='__main__':
+#     c = consumer()
+#     produce(c)
+
+
+
+# import random
+# from time import sleep
+# from greenlet import greenlet
+# from Queue import Queue
+
+# queue = Queue(1)
+
+# @greenlet
+# def producer():
+#     chars = ['a', 'b', 'c', 'd', 'e']
+#     global queue
+#     while True:
+#         char = random.choice(chars)
+#         queue.put(char)
+#         print "Produced: ", char
+#         sleep(1)
+#         consumer.switch()
+
+# @greenlet
+# def consumer():
+#     global queue
+#     while True:
+#         char = queue.get()
+#         print "Consumed: ", char
+#         sleep(1)
+#         producer.switch()
+
+# if __name__ == "__main__":
+#     producer.run()
+#     consumer.run()
+
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+from gevent import monkey; monkey.patch_all()
+# 修改Python自带的一些标准库
+import gevent
+from gevent.pool import Group
+import requests
+
+
+def f(url):
+    r = requests.get(url)
+    print('GET: {0} {1}'.format(r.status_code,r.url))
+
+
+# gevent.joinall([
+#         gevent.spawn(f, 'https://www.python.org/'),
+#         gevent.spawn(f, 'https://www.yahoo.com/'),
+#         gevent.spawn(f, 'http://www.baidu.com/'),
+# ])
+
+l = ['https://www.yahoo.com/','http://www.baidu.com/','https://www.python.org/']
+for x in l:
+    group = Group()
+    group.add(gevent.spawn(f,x))
+group.join()
+
+
+
+
+
