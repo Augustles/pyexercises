@@ -170,10 +170,12 @@ from gevent import monkey; monkey.patch_all()
 # 修改Python自带的一些标准库
 import gevent
 from gevent.pool import Group
-import requests
+import grequests
 
 
 def f(url):
+    # reqs = [grequests.get(l) for l in url]
+
     r = requests.get(url)
     print('GET: {0} {1}'.format(r.status_code,r.url))
 
@@ -185,11 +187,17 @@ def f(url):
 # ])
 
 l = ['https://www.yahoo.com/','http://www.baidu.com/','https://www.python.org/']
-for x in l:
-    group = Group()
-    group.add(gevent.spawn(f,x))
-group.join()
-
+def g(l):
+    for x in l:
+        group = Group()
+        group.apply_async(f,args=(x,))
+        # group.add(gevent.spawn(f,x))
+        group.join()
+# g(l)
+def g4(l):
+    g = Group()
+    g.map_async(f, l).get()
+g4(l)
 
 
 
