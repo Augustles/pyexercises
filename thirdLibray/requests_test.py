@@ -15,15 +15,15 @@ urls = ["http://letiantian.me/"] * 30
 # for x in response:
 #     print('GET: {0} {1}'.format(x.status_code,x.url))
 
-pool = grequests.Pool()
+# pool = grequests.Pool()
 
 
-def s(url):
-    r = requests.get(url)
-    print("GET: {0} {1}".format(r.status_code, r.url))
-for x in urls:
-    pool.spawn(s, x)
-pool.join()
+# def s(url):
+#     r = requests.get(url)
+#     print("GET: {0} {1}".format(r.status_code, r.url))
+# for x in urls:
+#     pool.spawn(s, x)
+# pool.join()
 
 # for x in urls:
 #     r = requests.get(x)
@@ -56,3 +56,48 @@ pool.join()
 # with open('test.html', 'a+') as f:
 #     for line in m.text:
 #         f.write(line)
+
+
+# headers = {
+#     'Cookie':'Cookie: _za=a9a7a089-55d0-4e7b-8239-82c639c8102a; __utma=51854390.2118762785.1438156422.1439783263.1439789466.7; __utmz=51854390.1439789466.7.7.utmcsr=s.bt.gg|utmccn=(referral)|utmcmd=referral|utmcct=/; __utmv=51854390.000--|3=entry_date=20150729=1; q_c1=ec104df951094b318fc5284eba306fe1|1440994756000|1438156321000; cap_id="YzU2ZmUxMGNhN2IyNDMzN2FjMzFmNGFhNGNjZmRmMzE=|1440994756|3c5b0b31ef22c7cf92b6950c9c6c237f673265db"; _xsrf=d078156ca3f4d6287a7979324efb98fe&password=zhaoying&remember_me=true&email=1927064778%40qq.com',
+#     'Origin':'http://www.zhihu.com',
+#     'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36',
+#     'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+#     'Referer':'http://www.zhihu.com/',
+#     'Accept-Language':'zh-CN,zh;q=0.8',
+#     'Host':'www.zhihu.com',
+#     'Connection':'keep-alive',
+#     # 'Content-Length:':'99',
+#     # 'Accept':'*/*',
+#     'X-Requested-With':'XMLHttpRequest',
+# }
+
+# r = requests.get('http://www.zhihu.com/#login', headers=headers)
+# print r.status_code
+# print r.content
+from bs4 import BeautifulSoup
+
+# print requests.post('http://www.zhihu.com/#login', data={
+#     '_xsrf': BeautifulSoup(requests.get('http://www.zhihu.com/').content).find(type='hidden')['value'],
+#     'email': '1927064778@qq.com',
+#     'password': '',
+#     'rememberme': 'true'})
+# r = requests.get('http://www.zhihu.com')
+# print r.content
+# headers = {
+#     'Host':'www.8dwww.com',
+#     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:39.0) Gecko/20100101 Firefox/39.0',
+#     'Referer':'http://www.8dwww.com/',
+#     'Cookie':'ASPSESSIONIDASRCTAQS=EPPDLOKBFIHLMPANFKDGNHMB; IESESSION=alive; bdshare_firstime=1440999947377; Hm_lvt_f5127c6793d40d199f68042b8a63e725=1440999948; Hm_lpvt_f5127c6793d40d199f68042b8a63e725=1441000038; pgv_pvi=756273152; pgv_si=s9144142848; _5t_trace_sid=92df0838b03c9e2a92a2e0efe5405b57; _5t_trace_tms=1; Hm_lvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1440999985; Hm_lpvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1441000037',
+#     'Content-Type':'application/x-www-form-urlencoded',
+#     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+# }
+
+# requests.post('http://www.8dwww.com/user/userlogin.asp', data={
+#     'username':'cxk517',
+#     'password':'',
+#     'submit':'Login',
+#     })
+# r = requests.get('http://www.8dwww.com/user/logininfo.asp')
+# print r.status_code
+# print r.text
