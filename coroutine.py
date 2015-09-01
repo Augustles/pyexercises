@@ -102,31 +102,31 @@ import os
 # master(worker())
 
 
-# import time
+import time
 
-# def consumer():
-#     r = ''
-#     while True:
-#         n = yield r
-#         if not n:
-#             return
-#         print('[CONSUMER] Consuming %s...' % n)
-#         time.sleep(1)
-#         r = '200 OK'
+def consumer():
+    r = ''
+    while True:
+        n = yield r
+        if not n:
+            return
+        print('[CONSUMER] Consuming %s...' % n)
+        time.sleep(1)
+        r = '200 OK'
 
-# def produce(c):
-#     c.next()
-#     n = 0
-#     while n < 5:
-#         n = n + 1
-#         print('[PRODUCER] Producing %s...' % n)
-#         r = c.send(n)
-#         print('[PRODUCER] Consumer return: %s' % r)
-#     c.close()
+def produce(c):
+    c.next()
+    n = 0
+    while n < 5:
+        n = n + 1
+        print('[PRODUCER] Producing %s...' % n)
+        r = c.send(n)
+        print('[PRODUCER] Consumer return: %s' % r)
+    c.close()
 
-# if __name__=='__main__':
-#     c = consumer()
-#     produce(c)
+if __name__=='__main__':
+    c = consumer()
+    produce(c)
 
 
 
@@ -160,44 +160,6 @@ import os
 # if __name__ == "__main__":
 #     producer.run()
 #     consumer.run()
-
-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-from gevent import monkey; monkey.patch_all()
-# 修改Python自带的一些标准库
-import gevent
-from gevent.pool import Group
-import grequests
-
-
-def f(url):
-    # reqs = [grequests.get(l) for l in url]
-
-    r = requests.get(url)
-    print('GET: {0} {1}'.format(r.status_code,r.url))
-
-
-# gevent.joinall([
-#         gevent.spawn(f, 'https://www.python.org/'),
-#         gevent.spawn(f, 'https://www.yahoo.com/'),
-#         gevent.spawn(f, 'http://www.baidu.com/'),
-# ])
-
-l = ['https://www.yahoo.com/','http://www.baidu.com/','https://www.python.org/']
-def g(l):
-    for x in l:
-        group = Group()
-        group.apply_async(f,args=(x,))
-        # group.add(gevent.spawn(f,x))
-        group.join()
-# g(l)
-def g4(l):
-    g = Group()
-    g.map_async(f, l).get()
-g4(l)
 
 
 

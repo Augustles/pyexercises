@@ -22,9 +22,9 @@ multiprocessing.freeze_support() # windows下崩溃
 
 
 def printf(x):
-    return x
+    print x
 
-l = range(3, 9)
+l = range(3, 900)
 l.insert(0, 'hello')
 l.append('august')
 
@@ -35,21 +35,22 @@ if __name__ == '__main__':
     # printf为执行的函数, l为要执行的序列元素
     # result = pool.map_async(printf,l).get(120)
 
-    pool = multiprocessing.Pool(4)
-    result = []
-    for x in l:
-        result.append(pool.apply_async(printf,args=(x,)))
-    pool.close()
-    pool.join()
-    for y in result:
-        print y.get()
-
-    # jobs = []
-    
-    # from multiprocessing.dummy import Process,Pool
+    # pool = multiprocessing.Pool(4)
+    # result = []
     # for x in l:
-    #     p = Process(target=printf,args=(x,))
-    #     jobs.append(p)
-    #     p.start()
+    #     result.append(pool.apply_async(printf,args=(x,)))
+    # pool.close()
+    # pool.join()
+    # for y in result:
+    #     print y.get()
+
+    jobs = []
+    
+    from multiprocessing.dummy import Process,Pool
+    pool = Pool(4)
+    for x in l:
+        p = Process(target=printf,args=(x,))
+        jobs.append(p)
+        p.start()
 
     

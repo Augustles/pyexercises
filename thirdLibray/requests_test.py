@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8')
 # requests-future
 import requests
 import grequests  # requests并发库 pip install grequests
-urls = ["http://letiantian.me/"] * 30
+urls = ["http://letiantian.me/"] * 50
 
 # reqs= [grequests.get(url) for url in urls]
 # response = grequests.map(reqs)
@@ -16,8 +16,6 @@ urls = ["http://letiantian.me/"] * 30
 #     print('GET: {0} {1}'.format(x.status_code,x.url))
 
 # pool = grequests.Pool()
-
-
 # def s(url):
 #     r = requests.get(url)
 #     print("GET: {0} {1}".format(r.status_code, r.url))
@@ -25,9 +23,9 @@ urls = ["http://letiantian.me/"] * 30
 #     pool.spawn(s, x)
 # pool.join()
 
-# for x in urls:
-#     r = requests.get(x)
-#     print('GET: {0} {1}'.format(r.status_code,r.url))
+for x in urls:
+    r = requests.get(x)
+    print('GET: {0} {1}'.format(r.status_code,r.url))
 
 # requests 中文乱码
 # print(u'\u6c34\u8349\u739b\u7459')
