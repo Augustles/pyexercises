@@ -111,7 +111,7 @@ def downbtkitty(base, keyword):
             get_item(url)
             input()
         elif 'q' in str(i):
-            print(red('...exit..'))
+            print(red('=> exit'))
             break
         elif 'p' in str(i):
             n = n - 1
