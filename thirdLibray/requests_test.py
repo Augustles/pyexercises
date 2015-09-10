@@ -9,6 +9,8 @@ sys.setdefaultencoding('utf-8')
 import requests
 import grequests  # requests并发库 pip install grequests
 urls = ["http://letiantian.me/"] * 50
+from bs4 import BeautifulSoup as bs
+import re
 
 # reqs= [grequests.get(url) for url in urls]
 # response = grequests.map(reqs)
@@ -23,22 +25,36 @@ urls = ["http://letiantian.me/"] * 50
 #     pool.spawn(s, x)
 # pool.join()
 
-for x in urls:
-    r = requests.get(x)
-    print('GET: {0} {1}'.format(r.status_code,r.url))
+# for x in urls:
+#     r = requests.get(x)
+#     print('GET: {0} {1}'.format(r.status_code,r.url))
 
 # requests 中文乱码
 # print(u'\u6c34\u8349\u739b\u7459')
 # import requests # 导入requests，需要pip安装
 # from bs4 import BeautifulSoup # 安装pip install beautifulsoup4
-# r = requests.get('https://github.com/timeline.json') # 发送一个get请求，相应有post
-# print r.text,'/n',r.content,r.encoding,r.status_code() # 响应内容,二进制响应内容,编码,响应状态码
+r = requests.get('https://github.com/timeline.json')  # 发送一个get请求，相应有post
+# print r.text,r.content,r.encoding,r.status_code() # 响应内容,二进制响应内容,编码,响应状态码
 # print r.json(),r.raw() # json响应内容，原始响应内容
 # print r.headers
 # print r.text
-# soup = BeautifulSoup(r.text)
+# 进行编码处理, 防止乱码
+
+# import chardet
+# r.encoding = chardet.detect(r.content)['encoding'] # requests设置encoding
+# r.content.decode(chardet.detect(r.content)['encoding']) # 字符串decode
+# soup = bs(r.text)
 # print soup.title.text
 
+# 测试代理ip是否可用
+proxies = {
+    'http': '61.130.97.212:8099',
+}
+
+
+r = requests.get("http://ip.chinaz.com/", proxies=proxies, timeout=5)
+print r.request.headers
+print bs(r.content).find('span', attrs={'class': 'info3'}).strong.get_text()
 
 # m = requests.get('http://mnwg.net')
 # s = BeautifulSoup(m.text)
@@ -65,15 +81,14 @@ for x in urls:
 #     'Accept-Language':'zh-CN,zh;q=0.8',
 #     'Host':'www.zhihu.com',
 #     'Connection':'keep-alive',
-#     # 'Content-Length:':'99',
-#     # 'Accept':'*/*',
+# 'Content-Length:':'99',
+# 'Accept':'*/*',
 #     'X-Requested-With':'XMLHttpRequest',
 # }
 
 # r = requests.get('http://www.zhihu.com/#login', headers=headers)
 # print r.status_code
 # print r.content
-from bs4 import BeautifulSoup
 
 # print requests.post('http://www.zhihu.com/#login', data={
 #     '_xsrf': BeautifulSoup(requests.get('http://www.zhihu.com/').content).find(type='hidden')['value'],
