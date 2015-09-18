@@ -11,20 +11,20 @@ import os
 # def consumer():
 #     r = ''
 #     while True:
-#         # 接收produce的n值,并传递r值
+# 接收produce的n值,并传递r值
 #         url = yield r
-#         # if not n:
-#         #     return
+# if not n:
+# return
 #         print('[CONSUMER] consuming %s...' % url)
 #         time.sleep(1)
 #         r = requests.get(url)
 #         r = r.status_code
 
-#         # r = '200 OK'
+# r = '200 OK'
 
 # def produce(c):
 #     '''x.next() -> the next value'''
-#     c.next() # next启动进入consumer的生成器
+# c.next() # next启动进入consumer的生成器
 #     links = []
 #     n = 0
 #     f = range(0,300,25)
@@ -38,17 +38,17 @@ import os
 #     while n < len(links)/2+1:
 #         n = n + 1
 #         print('[PRODUCER] Producing %s...' % n)
-#         # 切换到consumer执行,consumer完成后,继续执行produce
+# 切换到consumer执行,consumer完成后,继续执行produce
 #         '''
 #         Docstring:
 #         send(arg) -> send 'arg' into generator,
 #         return next yielded value or raise StopIteration.
 #         '''
-#         # 发送n到生成器，返回yield实例next值
+# 发送n到生成器，返回yield实例next值
 #         url = links[n]
-#         # t = requests.get(url)
-#         # t = t.status_code
-#         # print(t)
+# t = requests.get(url)
+# t = t.status_code
+# print(t)
 #         r = c.send(url)
 #         t = requests.get(links[n+1])
 #         f = links[n+1]
@@ -57,7 +57,7 @@ import os
 #         n = n+1
 
 
-#     c.close() # 关闭生成器
+# c.close() # 关闭生成器
 
 # doulists = 'http://www.douban.com/doulist/38849533/?start=50&sort=seq&sub_type='
 
@@ -104,6 +104,7 @@ import os
 
 import time
 
+
 def consumer():
     r = ''
     while True:
@@ -113,6 +114,7 @@ def consumer():
         print('[CONSUMER] Consuming %s...' % n)
         time.sleep(1)
         r = '200 OK'
+
 
 def produce(c):
     c.next()
@@ -124,43 +126,9 @@ def produce(c):
         print('[PRODUCER] Consumer return: %s' % r)
     c.close()
 
-if __name__=='__main__':
+if __name__ == '__main__':
     c = consumer()
     produce(c)
-
-
-
-# import random
-# from time import sleep
-# from greenlet import greenlet
-# from Queue import Queue
-
-# queue = Queue(1)
-
-# @greenlet
-# def producer():
-#     chars = ['a', 'b', 'c', 'd', 'e']
-#     global queue
-#     while True:
-#         char = random.choice(chars)
-#         queue.put(char)
-#         print "Produced: ", char
-#         sleep(1)
-#         consumer.switch()
-
-# @greenlet
-# def consumer():
-#     global queue
-#     while True:
-#         char = queue.get()
-#         print "Consumed: ", char
-#         sleep(1)
-#         producer.switch()
-
-# if __name__ == "__main__":
-#     producer.run()
-#     consumer.run()
-
 
 
 

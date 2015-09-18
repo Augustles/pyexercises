@@ -40,3 +40,12 @@ except Exception, e:
     #     import time
     #     f.wrte(time.strftime('%Y-%m-%d %H:%M:%S')+' => '+e)
     pass
+
+# 压缩图片
+
+
+def resize_img(img):
+    from PIL import Image
+    image = Image.open(img)
+    w, h = image.size
+    image.resize((w / 2, h / 2)).save('b.jpg')

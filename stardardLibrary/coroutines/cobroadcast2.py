@@ -1,53 +1,61 @@
-# cobroadcast2.py
-#
-# An example of broadcasting a data stream onto multiple coroutine targets.
-# This example shows "fan-in"---a situation where multiple coroutines
-# send to the same target.
+# encoding=utf-8
 
-from coroutine import coroutine
 
-# A data source.  This is not a coroutine, but it sends
-# data into one (target)
+def coroutine(func):  # 防止忘记调用.next()函数
+    def start(*args, **kargs):
+        cr = func(*args, **kargs)
+        cr.next()
+        return cr
+    return start
+
 
 import time
+
+
 def follow(thefile, target):
-    thefile.seek(0,2)      # Go to the end of the file
+    thefile.seek(0)      # Go to the end of the file
     while True:
-         line = thefile.readline()
-         if not line:
-             time.sleep(0.1)    # Sleep briefly
-             continue
-         target.send(line)
+        line = thefile.readline()
+        if not line:
+            time.sleep(0.1)    # Sleep briefly
+            continue
+        target.send(line)
 
-# A filter.
+
 @coroutine
-def grep(pattern,target):
+def grep(pattern, target):  # target是coroutine
+    print 'looking for {0}'.format(pattern)
     while True:
-        line = (yield)           # Receive a line
-        if pattern in line:
-            target.send(line)    # Send to next stage
+        line = (yield)  # 挂起, 等待接收line数据
+        if pattern in line:  # 数据符合要求则
+            target.send(line)  # 发送到下一个coroutine处理
 
-# A sink.  A coroutine that receives data
+
 @coroutine
 def printer():
     while True:
-         line = (yield)
-         print line,
+        line = (yield)
+        print line,
 
-# Broadcast a stream onto multiple targets
+
 @coroutine
-def broadcast(targets):
+def broadcast(targets):  # targets是coroutine集合, list
     while True:
         item = (yield)
+        # print item
         for target in targets:
+            print target
             target.send(item)
 
-# Example use
+
 if __name__ == '__main__':
-    f = open("access-log")
+    f = open("cobroadcast2.py")
     p = printer()
-    follow(f,
-       broadcast([grep('python',p),
-                  grep('ply',p),
-                  grep('swig',p)])
-           )
+    l = ['python', 'ply', 'swig']
+    for x in l:
+        follow(f, grep(x, p))
+    # follow(f,
+    #        broadcast([grep('python', p),
+    #                   grep('ply', p),
+    #                   grep('swig', p)])
+    #        )

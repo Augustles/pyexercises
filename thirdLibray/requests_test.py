@@ -8,14 +8,14 @@ sys.setdefaultencoding('utf-8')
 # requests-future
 import requests
 import grequests  # requests并发库 pip install grequests
-urls = ["http://letiantian.me/"] * 50
+urls = ["http://www.baidu.com/"] * 100
 from bs4 import BeautifulSoup as bs
 import re
 
-# reqs= [grequests.get(url) for url in urls]
+# reqs = [grequests.get(url) for url in urls]
 # response = grequests.map(reqs)
 # for x in response:
-#     print('GET: {0} {1}'.format(x.status_code,x.url))
+#     print('GET: {0} {1}'.format(x.status_code, x.url))
 
 # pool = grequests.Pool()
 # def s(url):
@@ -33,7 +33,7 @@ import re
 # print(u'\u6c34\u8349\u739b\u7459')
 # import requests # 导入requests，需要pip安装
 # from bs4 import BeautifulSoup # 安装pip install beautifulsoup4
-r = requests.get('https://github.com/timeline.json')  # 发送一个get请求，相应有post
+# r = requests.get('https://github.com/timeline.json')  # 发送一个get请求，相应有post
 # print r.text,r.content,r.encoding,r.status_code() # 响应内容,二进制响应内容,编码,响应状态码
 # print r.json(),r.raw() # json响应内容，原始响应内容
 # print r.headers
@@ -47,14 +47,14 @@ r = requests.get('https://github.com/timeline.json')  # 发送一个get请求，
 # print soup.title.text
 
 # 测试代理ip是否可用
-proxies = {
-    'http': '61.130.97.212:8099',
-}
+# proxies = {
+#     'http': '61.130.97.212:8099',
+# }
 
 
-r = requests.get("http://ip.chinaz.com/", proxies=proxies, timeout=5)
-print r.request.headers
-print bs(r.content).find('span', attrs={'class': 'info3'}).strong.get_text()
+# r = requests.get("http://ip.chinaz.com/", proxies=proxies, timeout=5)
+# print r.request.headers
+# print bs(r.content).find('span', attrs={'class': 'info3'}).strong.get_text()
 
 # m = requests.get('http://mnwg.net')
 # s = BeautifulSoup(m.text)
@@ -97,20 +97,20 @@ print bs(r.content).find('span', attrs={'class': 'info3'}).strong.get_text()
 #     'rememberme': 'true'})
 # r = requests.get('http://www.zhihu.com')
 # print r.content
-# headers = {
-#     'Host':'www.8dwww.com',
-#     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:39.0) Gecko/20100101 Firefox/39.0',
-#     'Referer':'http://www.8dwww.com/',
-#     'Cookie':'ASPSESSIONIDASRCTAQS=EPPDLOKBFIHLMPANFKDGNHMB; IESESSION=alive; bdshare_firstime=1440999947377; Hm_lvt_f5127c6793d40d199f68042b8a63e725=1440999948; Hm_lpvt_f5127c6793d40d199f68042b8a63e725=1441000038; pgv_pvi=756273152; pgv_si=s9144142848; _5t_trace_sid=92df0838b03c9e2a92a2e0efe5405b57; _5t_trace_tms=1; Hm_lvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1440999985; Hm_lpvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1441000037',
-#     'Content-Type':'application/x-www-form-urlencoded',
-#     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-# }
+headers = {
+    'Host':'www.8dwww.com',
+    'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:39.0) Gecko/20100101 Firefox/39.0',
+    'Referer':'http://www.8dwww.com/',
+    # 'Cookie':'ASPSESSIONIDASRCTAQS=EPPDLOKBFIHLMPANFKDGNHMB; IESESSION=alive; bdshare_firstime=1440999947377; Hm_lvt_f5127c6793d40d199f68042b8a63e725=1440999948; Hm_lpvt_f5127c6793d40d199f68042b8a63e725=1441000038; pgv_pvi=756273152; pgv_si=s9144142848; _5t_trace_sid=92df0838b03c9e2a92a2e0efe5405b57; _5t_trace_tms=1; Hm_lvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1440999985; Hm_lpvt_19a5cb6dc0bc4f92dea1d7f09bea43aa=1441000037',
+    'Content-Type':'application/x-www-form-urlencoded',
+    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+}
 
-# requests.post('http://www.8dwww.com/user/userlogin.asp', data={
-#     'username':'cxk517',
-#     'password':'',
-#     'submit':'Login',
-#     })
-# r = requests.get('http://www.8dwww.com/user/logininfo.asp')
-# print r.status_code
-# print r.text
+requests.post('http://www.8dwww.com/user/userlogin.asp', data={
+    'username':'cxk517',
+    'password':'ba52b4e24bdc',
+    'submit':'Login',
+    })
+r = requests.get('http://www.8dwww.com/user/logininfo.asp')
+print r.status_code
+print r.text
