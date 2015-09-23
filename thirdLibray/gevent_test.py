@@ -33,7 +33,7 @@ l = ['https://www.yahoo.com/',
 pool = Pool(4)  # 使用pool管理协程数目
 import time
 greenlets = [gevent.spawn(f, x) for x in l]  # gevent.spaw已经开始执行协程
-result = gevent.joinall(greenlets)
+result = gevent.joinall(greenlets)  # 把greenlet结果收集起来
 print result
 
 

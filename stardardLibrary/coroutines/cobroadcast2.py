@@ -23,6 +23,16 @@ def follow(thefile, target):
 
 
 @coroutine
+def broadcast(targets):  # targets是coroutine集合, list
+    while True:
+        item = (yield)
+        # print item
+        for target in targets:
+            # print target
+            target.send(item)
+
+
+@coroutine  # 从上一个coroutine接收
 def grep(pattern, target):  # target是coroutine
     print 'looking for {0}'.format(pattern)
     while True:
@@ -38,24 +48,14 @@ def printer():
         print line,
 
 
-@coroutine
-def broadcast(targets):  # targets是coroutine集合, list
-    while True:
-        item = (yield)
-        # print item
-        for target in targets:
-            print target
-            target.send(item)
-
-
 if __name__ == '__main__':
     f = open("cobroadcast2.py")
     p = printer()
     l = ['python', 'ply', 'swig']
-    for x in l:
-        follow(f, grep(x, p))
-    # follow(f,
-    #        broadcast([grep('python', p),
-    #                   grep('ply', p),
-    #                   grep('swig', p)])
-    #        )
+    # for x in l:
+    #     follow(f, grep(x, p))
+    follow(f,
+           broadcast([grep('python', p),
+                      grep('ply', p),
+                      grep('swig', p)])
+           )
