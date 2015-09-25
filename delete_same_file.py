@@ -19,10 +19,10 @@ def main(path):
     start = now()
     for x, y, z in os.walk(path):
         for a in z:
-            file = os.path.abspath(x + a)
-            total_file += 1
-            file = os.path.abspath(file)
-            if os.path.isfile(file):
+            if a.endswith('.py') or a.endswith('.md'):
+                file = os.path.abspath(x + os.sep + a)
+                total_file += 1
+                # print file
                 filemd5 = getmd5(file)
                 if filemd5 in all_md5:
                     total_delete += 1
