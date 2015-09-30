@@ -28,7 +28,7 @@ if __name__ == '__main__':
     # 配置选项
     host = '121.14.106.149'
     username = 'administrator'
-    password = '76WqFcjmwfxJTMdV'
+    password = ''
     finish = ':~$'
     commands = ['dir']
     startTelnet(host, username, password, finish, commands)

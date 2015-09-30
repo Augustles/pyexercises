@@ -5,7 +5,7 @@
 import time,os,sys
 
 '''
-定时关机
+定时关机, 添加linux
 '''
 
 def work():
@@ -17,7 +17,11 @@ def work():
         cmd = '''c:\\windows\\system32\\shutdown -a'''
         os.system(cmd)
     time.sleep(60)
-if __name__ == '__main__':   
+if __name__ == '__main__':
     num = int(time.strftime('%H'))
-    if num >= 18:
-        work()
+    if os.name == 'nt':
+        if num >= 18:
+            work()
+    else:
+        if num >= 18:
+            os.system('echo shutdown')

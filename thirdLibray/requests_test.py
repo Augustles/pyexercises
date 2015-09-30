@@ -72,29 +72,29 @@ import re
 #         f.write(line)
 
 
-headers = {
-    'Cookie':'Cookie: _za=a9a7a089-55d0-4e7b-8239-82c639c8102a; __utma=51854390.2118762785.1438156422.1439783263.1439789466.7; __utmz=51854390.1439789466.7.7.utmcsr=s.bt.gg|utmccn=(referral)|utmcmd=referral|utmcct=/; __utmv=51854390.000--|3=entry_date=20150729=1; q_c1=ec104df951094b318fc5284eba306fe1|1440994756000|1438156321000; cap_id="YzU2ZmUxMGNhN2IyNDMzN2FjMzFmNGFhNGNjZmRmMzE=|1440994756|3c5b0b31ef22c7cf92b6950c9c6c237f673265db"; _xsrf=d078156ca3f4d6287a7979324efb98fe&password=zhaoying&remember_me=true&email=1927064778%40qq.com',
-    'Origin':'http://www.zhihu.com',
-    'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36',
-    'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-    'Referer':'http://www.zhihu.com/',
-    'Accept-Language':'zh-CN,zh;q=0.8',
-    'Host':'www.zhihu.com',
-    'Connection':'keep-alive',
-    'Content-Length:':'99',
-    'Accept':'*/*',
-    'X-Requested-With':'XMLHttpRequest',
-}
-ss = requests.session()
-ss.headers.update(headers)
+# headers = {
+#     'Cookie':'Cookie: _za=a9a7a089-55d0-4e7b-8239-82c639c8102a; __utma=51854390.2118762785.1438156422.1439783263.1439789466.7; __utmz=51854390.1439789466.7.7.utmcsr=s.bt.gg|utmccn=(referral)|utmcmd=referral|utmcct=/; __utmv=51854390.000--|3=entry_date=20150729=1; q_c1=ec104df951094b318fc5284eba306fe1|1440994756000|1438156321000; cap_id="YzU2ZmUxMGNhN2IyNDMzN2FjMzFmNGFhNGNjZmRmMzE=|1440994756|3c5b0b31ef22c7cf92b6950c9c6c237f673265db"; _xsrf=d078156ca3f4d6287a7979324efb98fe&password=zhaoying&remember_me=true&email=1927064778%40qq.com',
+#     'Origin':'http://www.zhihu.com',
+#     'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36',
+#     'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+#     'Referer':'http://www.zhihu.com/',
+#     'Accept-Language':'zh-CN,zh;q=0.8',
+#     'Host':'www.zhihu.com',
+#     'Connection':'keep-alive',
+#     'Content-Length:':'99',
+#     'Accept':'*/*',
+#     'X-Requested-With':'XMLHttpRequest',
+# }
+# ss = requests.session()
+# ss.headers.update(headers)
 
-ss.post('http://www.zhihu.com/#login', data={
-    '_xsrf': bs(requests.get('http://www.zhihu.com/').content).find(type='hidden')['value'],
-    'email': '1927064778@qq.com',
-    'password': '',
-    'rememberme': 'true'})
-r = ss.get('http://www.zhihu.com',headers=headers)
-print r.content
+# ss.post('http://www.zhihu.com/#login', data={
+#     '_xsrf': bs(requests.get('http://www.zhihu.com/').content).find(type='hidden')['value'],
+#     'email': '1927064778@qq.com',
+#     'password': '',
+#     'rememberme': 'true'})
+# r = ss.get('http://www.zhihu.com',headers=headers)
+# print r.content
 
 # ss = requests.session()
 # headers = {
@@ -141,3 +141,6 @@ print r.content
 # r = ss.get('http://192.168.0.120:8000/my',)
 # print r.status_code
 # print r.text
+
+
+http://www.renren.com/SysHome.do

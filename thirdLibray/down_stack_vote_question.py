@@ -4,7 +4,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs
 import re
 import os
 
@@ -24,7 +24,7 @@ def down_vote(urls, out):
     # 查找question写入
     for url in d:
         r = requests.get(url)
-        soup = BeautifulSoup(r.text)
+        soup = bs(r.text)
         for i, h3 in enumerate(soup.find_all('h3')):
             if 'current community' in h3.text or 'your communities' \
                     in h3.text or 'more stack exchange communities' in h3.text:

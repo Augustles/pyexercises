@@ -18,7 +18,7 @@ import requests
 # soup.find('div', attrs={'class': 'title'})
 # soup.find('div', attrs={'class': None, 'id': True})  # limit=3返回限定3数量
 
-
+# headers部分一般没有cookies, 由服务端返回
 headers = {'Cookie': 'CNZZDATA4793016=cnzz_eid%3D207825403-1441784021-%26ntime%3D1441866136',
            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36'}
 

@@ -8,15 +8,15 @@ import re
 import uuid
 
 hostname = socket.gethostname()
-l_ip = socket.gethostbyname(hostname)
+l_ip = socket.gethostbyname(hostname)  # socket.gethostbyname_ex()
 username = getpass.getuser()
 node = uuid.getnode()
 mac = uuid.UUID(int=node)
 addr = mac.hex[-12:]
 # 处理addr:0030673f69ee
 s = ''
-for x in range(0,len(addr),2):
-    s += addr[x:x+2] + '-'
+for x in range(0, len(addr), 2):
+    s += addr[x:x + 2] + '-'
 addr = s[:-1]
 # if os.name == 'nt':
 #     t_bios = os.system('wmic bios get name,SMBIOSBIOSVersion,manufacturer')
@@ -42,4 +42,4 @@ addr = s[:-1]
 # out_f = re.findall(r'\\', out)
 
 
-print hostname,l_ip,addr,username
+print hostname, l_ip, addr, username
