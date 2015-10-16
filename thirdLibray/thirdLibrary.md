@@ -1,4 +1,4 @@
-##第三方库
+##[第三方库](https://github.com/vinta/awesome-python)
 Tkinter———— Python默认的图形界面接口。
 Pmw(Python megawidgets)Python超级GUI组件集
 PyXML———— 用Python解析和处理XML文档的工具包
