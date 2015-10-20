@@ -1,5 +1,4 @@
-
-time(时间)
+##time(时间)
 
 https://blog.linuxeye.com/374.html
 1.如何将一个python time.struct_time对象转化datetime对象
@@ -15,6 +14,16 @@ print datetime.datetime.now().time() # 获取时间
 哪一个更适合于计时?哪个更精确
 简而言之, time.clock()更精确些, 但是如果涉及cpu外的硬件时间统计(e.g. gpu), 只能使用time.time()
 4. python和javascript中json的datetime
+
+from datetime import datetime, timedelta
+
+import time
+print time.strftime('%Y-%m-%d')
+
+now = datetime.now()
+day = timedelta(1) + now
+today = time.strftime('%Y/%m/%d %H:%M:%S week:%w')
+
 import time
 now = datetime.datetime.now()
 date = datetime.date.today()

@@ -40,6 +40,29 @@ import re
 # print r.text
 # 进行编码处理, 防止乱码
 
+# coding=utf-8
+
+# import requests
+# import urllib
+# import chardet # 检测字符编码
+# from bs4 import BeautifulSoup
+
+# # 防止出现UnicodeEncodeError
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
+
+# url = 'http://www.liaoxuefeng.com/'
+# testData = urllib.urlopen(url).read() # 读取内容
+# r = requests.get(url) # 中文乱码???
+# #print chardet.detect(testData) # 检测字符
+# soup = BeautifulSoup(testData)
+
+# title = soup.title.text # 有时提示没有text属性,用try:
+# keywords = soup.select('meta[name="keywords"]')
+# description = soup.select('meta[name="description"]')
+# print url,title,keywords,description,soup.p
+
 # import chardet
 # r.encoding = chardet.detect(r.content)['encoding'] # requests设置encoding
 # r.content.decode(chardet.detect(r.content)['encoding']) # 字符串decode
@@ -141,6 +164,3 @@ import re
 # r = ss.get('http://192.168.0.120:8000/my',)
 # print r.status_code
 # print r.text
-
-
-http://www.renren.com/SysHome.do

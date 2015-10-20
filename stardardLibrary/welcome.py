@@ -7,4 +7,4 @@ def main():
     print 'welcome'
 
 if __name__ == '__main__':  # 判断是否直接运行该py文件
-    main()
+    main()  # import 这个py会产生.pyc文件

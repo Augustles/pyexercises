@@ -14,7 +14,7 @@ isinstance(lst,str)
 print isinstance(lst,list)
 5.如何判读一个变量的类型
 type(lst)
-6. python中如何注释一段代码/为什么没有多行zhus
+6. python中如何注释一段代码/为什么没有多行注释
 7. python中单引号和双引号
 解析一下python中的闭包
 对象是数据和方法关联,闭包是函数和数据关联
