@@ -8,7 +8,7 @@
 python一切皆对象它们要么是类的实例,要么是元类的实例
 python对象包含三个要素,id标识一个对象,is是用id判断
 type标识对象的类型,value主要是==进行值的判断
-python中的数字,字符串和元祖的不可变主要体现在会新建一个引用
+python中的数字,字符串和元祖的不可变主要体现在会新建一个引用计数
 字典和列表的可变主要是python改变了其引用
 
 #### 特殊方法与多范式
@@ -41,7 +41,7 @@ python任何递归函数都会存在栈溢出的可能
 ;可以把语句写在同一行,\可以语句为多行,(),[],{}不用\可以写成多行
 
 python__init__用来对你的对象进行一些初始化,__del__删除一个类的实例调用
-python中属性和方法区别,属性是变量,方法是函数
+python中属性和方法区别,属性是变量(os.name),方法是函数(os.listdir())
 python内置类class属性__name__,__bases__,__dict__,__doc__,__module__
 python内置模块module属性__doc__,__name__,__dict__,__file__
 python内置实例instance属性__dict__,__class__
@@ -50,7 +50,7 @@ python def定义的函数__doc__,__name__,*__module__,*__dict__
 python 方法method__doc__,__name__,*__module__
 python 生成器generator__iter__,gi_code,gi_frame,gi_running,next,close,send,throw
 此外,还有代码块code,栈帧frame,追踪traceback
-使用inspct模块提供一系列函数用于帮助使用自省
+####使用inspct模块提供一系列函数用于帮助使用自省
 检查对象类型,ismodule(obj),is{class|function|method|builtin}(obj),isroutine(obj)是否可调用类型
 获取对象信息,getmembers(obj)dir,getmodule(obj),get{source|sourcelines}(obj)
 getargspec(func)仅用于方法,getcallargs(func),getmro(cls)
