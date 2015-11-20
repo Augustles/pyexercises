@@ -4,8 +4,8 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 import time
-from gevent import monkey
-monkey.patch_all()
+# from gevent import monkey
+# monkey.patch_all()
 
 # from pymongo import MongoClient
 
@@ -27,7 +27,7 @@ items = {}
 urls = []
 for x in xrange(1, 10):
     urls.append(
-        'https://www.amazon.com/s/ref=sr_pg_{0}?rh=n%3A172282%2Cn%3A%21493964%2Cn%3A1266092011%2Cn%3A172659%2Cp_36%3A0-199999%2Cp_n_feature_keywords_three_browse-bin%3A7688788011&page={1}&ie=UTF8&qid=1447833672'.format(x, x))
+        'https://www.amazon.com/s/ref=sr_pg_{0}?rh=n%3A172282%2Cn%3A%21493964%2Cn%3A1266092011%2Cn%3A172659%2Cp_36%3A0-199999%2Cp_n_feature_keywords_three_browse-bin%3A7688788011&page={1}&ie=UTF8'.format(x, x))
 
 
 def proxies():
@@ -45,7 +45,7 @@ def request(url):
     # http://segmentfault.com/q/1010000000511783
     # ss.proxies = p
     ss.headers.update(headers=headers)
-    r = ss.get(url, timeout=(2048,2048))
+    r = ss.get(url, timeout=None, verify=True)
     return r
 
 
@@ -80,7 +80,7 @@ def get_amazon_item(url):
         t = 0.25
         try:
             all = soup.find('div', attrs={'id': re.compile(
-                r"\w+Results"), 'class': True}).find_all('li')
+                r"\w+Results"), 'class': True}).find_all('li', attrs={'id': re.compile(r"result\_\d+"), 'class': True, 'data-asin': True})
             if all:
                 break
         except AttributeError:
@@ -88,19 +88,27 @@ def get_amazon_item(url):
             t += 0.25
             if t > 7:
                 print ' ==> Bad!'
-
+    # 取不到值处理???
     for y in all:
         try:
             top = int(y.get('id').split('_')[-1]) + 1
             url = y.find('a').get('href')
             url = url.strip()
+            print top, url
             prices = y.find('span', attrs={
                             'class': 'a-size-base a-color-price s-price a-text-bold'}).get_text()
             items['prices'] = prices
             items['top'] = top
             items['url'] = url
-            title = get_amazon_item_content(items['url'])
+            print top, len(all), prices
+            while 1:
+                title = get_amazon_item_content(items['url'])
+                if title:
+                    break
+                else:
+                    title = get_amazon_item_content(items['url'])
             items['title'] = title
+            print top, len(all), prices, title, url
             items['entry_time'] = time.strftime('%Y-%m-%d')
             print items
             amazon_items[top] = url
@@ -119,19 +127,19 @@ def get_amazon_item_content(url):
 
 if __name__ == '__main__':
     # from multiprocessing.dummy import Process, Pool
-    from gevent.pool import Group, Pool
-    import gevent
+    # from gevent.pool import Group, Pool
+    # import gevent
 
     st = time.time()
     print ' ==> start amazon spider...'
     # p = proxies()
     # all_item = []
     # import grequests
-    # for x in urls:
-    #     get_amazon_item(x)
-    pool = Pool(4)
-    greenlets = [gevent.spawn(get_amazon_item, x) for x in urls]
-    result = gevent.joinall(greenlets)
+    for x in urls:
+        get_amazon_item(x)
+    # pool = Pool(4)
+    # greenlets = [gevent.spawn(get_amazon_item, x) for x in urls]
+    # result = gevent.joinall(greenlets)
 
     # pool = Pool(processes=4)
     # result = pool.map_async(get_amazon_item, urls).get(1024)
