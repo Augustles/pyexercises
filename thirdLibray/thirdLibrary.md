@@ -1,4 +1,8 @@
 ##[第三方库](https://github.com/vinta/awesome-python)
+requests--- http请求
+BeautifulSoup--- 解析网页(内容提取)
+gevent--- 协程并发(greenlet)
+multiprocessing--- 多线程/多进程
 Tkinter———— Python默认的图形界面接口。
 Pmw(Python megawidgets)Python超级GUI组件集
 PyXML———— 用Python解析和处理XML文档的工具包

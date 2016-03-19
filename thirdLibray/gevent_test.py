@@ -59,6 +59,26 @@ def g4(l):
 
 # queue = Queue(1)
 
+from greenlet import greenlet
+
+def a():
+    aa = 12
+    print aa
+    b.switch()
+    bb = 34
+    print bb
+    b.switch()
+
+def b():
+    cc = 56
+    print cc
+    a.switch()
+    dd = 78
+    print dd
+
+a = greenlet(a)
+b = greenlet(b)
+a.switch()
 # @greenlet
 # def producer():
 #     chars = ['a', 'b', 'c', 'd', 'e']

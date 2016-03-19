@@ -5,6 +5,10 @@
 [leetcode](https://leetcode.com/)
 [hackerxu](http://hackerxu.com/Twd/)
 ## 对象
+类是一个模板, 描述对象的行为和状态
+对象是类一个实例, 有行为状态和行为
+方法是行为
+实例变量是描述对象独特实例变量
 python一切皆对象它们要么是类的实例,要么是元类的实例
 python对象包含三个要素,id标识一个对象,is是用id判断
 type标识对象的类型,value主要是==进行值的判断
@@ -110,5 +114,27 @@ python 位运算,~非,&交集,>>,<<位移(转化为二进制移动),|并集,^只
 client端发送连接syn报文,序列号为0,体现在传输层中Sequence number为0
 server端接收后回复ack,此时ack和syn标志位都为1,将确认序号(Acknowledgement Number)设置为客户的ISN加1
 client端再次向server端发送ack报文,syn标志位为0,
-TCP四次挥手,是指tcp的连接拆除需要发送四个包
+### TCP四次挥手,是指tcp的连接拆除需要发送四个包
 server端或者client端发送fin报文,server或者client端ack确认
+
+### linux
+1. 系统
+硬件信息, 状态信息,
+cpu, uptime, top
+memory, top
+io, dstat
+2. 进程, top, supervisord(进程管理)
+进程列表 ps -aux
+优先级(renice更改进程优先级)
+前台/后天Ctral+Z, fg)
+kill/killall
+3. 文件系统
+磁盘信息(chmod权限/chown拥有人)
+磁盘使用情况(du -sh */du -sh/fdisk)
+boot(unload/ load kernel.old boot)
+已打开文件(lsof)
+挂载/从挂(mount/unmount)
+4. 网络
+4.1 路由(ifconfig/route -n)
+
+
