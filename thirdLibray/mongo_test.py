@@ -5,13 +5,13 @@ import random  # 导入random
 from pymongo import MongoClient  # 导入Mongoclient
 
 # 连接mongodb，增insert，save删drop，remove改update查find
-config = ConfigParser.RawConfigParser()
-config.read(r'C:\Users\ieware\pyexercises\august.conf')  # r不解析\
+# config = ConfigParser.RawConfigParser()
+# config.read(r'C:\Users\ieware\pyexercises\august.conf')  # r不解析\
 
-try:
-    dbhost = config.get('base', 'dbhost')
-except NoSectionError, e:
-    print e
+# try:
+#     dbhost = config.get('base', 'dbhost')
+# except NoSectionError, e:
+#     print e
 
 db = MongoClient(dbhost).august  # 连接August数据库
 # db.authenticate # 用户认证
