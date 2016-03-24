@@ -1,4 +1,5 @@
 ##机器学习
+http://www.cnblogs.com/yuxc/archive/2011/06/27/2091432.html
 ####nltk 自然语言处理
 ####scipy 算法库和数学工具包
 ####NumPy 几乎是一个无法回避的科学计算工具包，最常用的也许是它的N维数组对象，其他还包括一些成熟的函数库，用于整合C/C++和Fortran代码的工具包，线性代数、傅里叶变换和随机数生成函数等。NumPy提供了两种基本的对象：ndarray（N-dimensional array object）和 ufunc（universal function object）。ndarray是存储单一数据类型的多维数组，而ufunc则是能够对数组进行处理的函数。
