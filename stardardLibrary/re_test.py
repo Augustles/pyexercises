@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import re # 正则表达式
+import re  # 正则表达式
 # re.findall(),sub(),search(),match,
 
 # 正则表达式的元字符.^$*?{}[]|()
@@ -23,17 +23,17 @@ import re # 正则表达式
 
 text = "JGood is a handsome boy, he is cool, clever, and so on..."
 text1 = text[:]
-print re.findall(r'\w+', text) # 返回一个列表
-print re.sub(r'\s+','_', text) # 替换匹配到的字符
-m = re.search(r'o\w+', text) # 返回匹配到第一个值
-print m.group(),m.start(),m.end()
-m1 = re.split(r'\s+', text) # 按照条件分割字符串
+print re.findall(r'\w+', text)  # 返回一个列表
+print re.sub(r'\s+', '_', text)  # 替换匹配到的字符
+m = re.search(r'o\w+', text)  # 返回匹配到第一个值
+print m.group(), m.start(), m.end()
+m1 = re.split(r'\s+', text)  # 按照条件分割字符串
 print m1
 
 print '-'.join(m1)
-print text1.find('handsome') # 返回h的索引
-print text1.replace('boy','girl') # replace方法替换
-print text1.split(),type(text1)
+print text1.find('handsome')  # 返回h的索引
+print text1.replace('boy', 'girl')  # replace方法替换
+print text1.split(), type(text1)
 
 # 常用正则表达式,匹配中文 [\u4e00-\u9fa5]
 # 匹配双字节字符(包括汉字在内)：[^\x00-\xff]
@@ -46,3 +46,6 @@ print text1.split(),type(text1)
 # 匹配腾讯QQ号：[1-9][0-9]{4,}
 # 匹配身份证：\d{15}|\d{18}
 # 匹配ip地址：\d+\.\d+\.\d+\.\d+
+# re.search(r'\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}', s).group(0)
+# 匹配网址: r'[a-zA-z]+://[^\s]*'
+# 去除空格: ''.join(s.split())

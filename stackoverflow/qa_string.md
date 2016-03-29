@@ -73,6 +73,7 @@ n = '3'
 print n.zfill(5)
 print '000007%d' %(int(n))
 print '{0:03d}'.format(5)
+print '{0:.3f}'.format(0.2347)
 15 如何把字符串转化为datetime
 print '15...'
 pub = time.strftime("%a,%d %b %Y %H:%M:%S +0000",time.gmtime())
@@ -89,6 +90,8 @@ windows 文本默认格式ansi,在sublime会乱码
 UTF-8是Unicode的实现方式之一
 字符串可以编码成字节包, 字节包可以解码成字符串
 在utf8的文件中，字符串为utf8编码，在gb2312的文件中，编码为gb2312
+str是字节串, 经过unicode编码(encode)的字节串
+utf-8是经过
 decode() 其他编码转化成unicode编码
 encode() unicode编码转为其他编码
 b'\xe4\xb8\xad\xe6\x96\x87'
@@ -103,5 +106,3 @@ s.decode('unicode-escape')
 from subprocess import check_output
 t = check_output('ipconfig')
 t.decode('gbk')
-
-
