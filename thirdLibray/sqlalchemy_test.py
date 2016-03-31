@@ -13,3 +13,4 @@ session.execute('show databases').fetchall()
 session.execute('use scrapy')
 session.execute('select * from douban')
 session.execute('select * from douban').first()
+query = session.query(User) # 查询User表
