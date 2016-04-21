@@ -1,10 +1,11 @@
 ##机器学习
-http://www.cnblogs.com/yuxc/archive/2011/06/27/2091432.html
+####http://www.cnblogs.com/yuxc/archive/2011/06/27/2091432.html
+####http://www.chmod764sean.com/computer-tec/data-mining-machine-learning/720.html
 ####nltk 自然语言处理
-####scipy 算法库和数学工具包
-####NumPy 几乎是一个无法回避的科学计算工具包，最常用的也许是它的N维数组对象，其他还包括一些成熟的函数库，用于整合C/C++和Fortran代码的工具包，线性代数、傅里叶变换和随机数生成函数等。NumPy提供了两种基本的对象：ndarray（N-dimensional array object）和 ufunc（universal function object）。ndarray是存储单一数据类型的多维数组，而ufunc则是能够对数组进行处理的函数。
+####scipy (算法级应用)算法库和数学工具包
+####NumPy (高效数据结构)几乎是一个无法回避的科学计算工具包，最常用的也许是它的N维数组对象，其他还包括一些成熟的函数库，用于整合C/C++和Fortran代码的工具包，线性代数、傅里叶变换和随机数生成函数等。NumPy提供了两种基本的对象：ndarray（N-dimensional array object）和 ufunc（universal function object）。ndarray是存储单一数据类型的多维数组，而ufunc则是能够对数组进行处理的函数。
 ####Matplotlib python最著名的绘图库，它提供了一整套和matlab相似的命令API
-####scikit-learn 主要涵盖分类，回归和聚类算法，例如SVM， 逻辑回归，朴素贝叶斯，随机森林，k-means等算法,我们熟悉的NLTK中，分类器方面就有专门针对scikit-learn的接口，可以调用scikit-learn的分类算法以及训练数据来训练分类器模型
+####scikit-learn (机器学习)主要涵盖分类，回归和聚类算法，例如SVM， 逻辑回归，朴素贝叶斯，随机森林，k-means, (六个部分，分类，回归，聚类，数据降维，模型选择，数据预处理)等算法,我们熟悉的NLTK中，分类器方面就有专门针对scikit-learn的接口，可以调用scikit-learn的分类算法以及训练数据来训练分类器模型
 ##[第三方库](https://github.com/vinta/awesome-python)
 requests--- http请求
 BeautifulSoup--- 解析网页(内容提取)
