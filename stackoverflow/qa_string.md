@@ -94,6 +94,7 @@ str是字节串, 经过unicode编码(encode)的字节串
 utf-8是经过
 decode() 其他编码转化成unicode编码
 encode() unicode编码转为其他编码
+str.decode/unicode.encode
 b'\xe4\xb8\xad\xe6\x96\x87'
 s = '中文' # '\xe4\xb8\xad\xe6\x96\x87'
 s.encode('utf-8')
