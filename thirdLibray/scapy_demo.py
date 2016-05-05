@@ -1,6 +1,9 @@
 # encoding=utf-8
 
 from scapy.all import *
+from scapy.all import rdpcap
+
+pkts = rdpcap('abc.pcap')
 
 
 packet = IP()  # 创建一个封包

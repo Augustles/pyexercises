@@ -18,7 +18,7 @@ monkey.patch_all()
 # 旋转, 扭曲
 # 粘合一起
 
-frm PIL import Image
+from PIL import Image
 from operator import itemgetter
 
 
