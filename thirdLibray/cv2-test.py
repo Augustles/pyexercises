@@ -42,7 +42,7 @@ im = im.filter(ImageFilter.MedianFilter())  # 中值滤波过滤(中值去噪)
 # 维纳滤波
 # 干扰线
 # 1. cv2.HoughLines 检测直线
-# 2. 寻找连通线, http://blog.csdn.net/problc/article/details/5579475
+# 2. 寻找连通线???, http://blog.csdn.net/problc/article/details/5579475
 # flood fill(提取字符)
 h, w = im1.shape[:2]
 mask = np.zeros((h + 2, w + 2), np.uint8)
@@ -66,5 +66,7 @@ cv2.floodFill(im1, mask, (0, 0), 255)
 # 2. 归一化
 
 # 分割
-# 1. 锤子投影
+# 1. 投影法
+# 2. 连通区域法
+# 3. 滴水算法???, http://livezingy.com/csharp-code-of-the-drop-fall-algorithm/
 # 机器学习knn算法
