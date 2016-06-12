@@ -87,6 +87,7 @@ for index,x in enumerate(list2):print index,x
 #global list2 #  在函数使用global变成全局变量
 
 windows 文本默认格式ansi,在sublime会乱码
+Unicode 是字符集；UTF-8 是编码
 UTF-8是Unicode的实现方式之一
 字符串可以编码成字节包, 字节包可以解码成字符串
 在utf8的文件中，字符串为utf8编码，在gb2312的文件中，编码为gb2312
