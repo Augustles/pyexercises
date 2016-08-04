@@ -126,7 +126,7 @@ io, dstat
 2. 进程, top, supervisord(进程管理)
 进程列表 ps -aux
 优先级(renice更改进程优先级)
-前台/后天Ctral+Z, fg)
+前台/后台(Ctral+Z, fg, jobs, fg % 1)
 kill/killall
 3. 文件系统
 磁盘信息(chmod权限/chown拥有人)
