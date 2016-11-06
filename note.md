@@ -111,9 +111,10 @@ python 位运算,~非,&交集,>>,<<位移(转化为二进制移动),|并集,^只
 ### TCP三次握手
 是指建立一个tcp链接时,需要客户端和服务端总共发送三个包
 未建立连接时Sequence numbe,和Acknowledgement Number都为0
-client端发送连接syn报文,序列号为0,体现在传输层中Sequence number为0
-server端接收后回复ack,此时ack和syn标志位都为1,将确认序号(Acknowledgement Number)设置为客户的ISN加1
-client端再次向server端发送ack报文,syn标志位为0,
+Sequence number(顺序号码) Acknowledge number(确认号码)
+第一次握手：主机A发送位码为syn＝1,随机产生seq number=1234567的数据包到服务器，主机B由SYN=1知道，A要求建立联机；
+第二次握手：主机B收到请求后要确认联机信息，向A发送ack number=(主机A的seq+1),syn=1,ack=1,随机产生seq=7654321的包
+第三次握手：主机A收到后检查ack number是否正确，即第一次发送的seq number+1,以及位码ack是否为1，若正确，主机A会再发送ack number=(主机B的seq+1),ack=1，主机B收到后确认seq值与ack=1则连接建立成功。
 ### TCP四次挥手,是指tcp的连接拆除需要发送四个包
 server端或者client端发送fin报文,server或者client端ack确认
 
