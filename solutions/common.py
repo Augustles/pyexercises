@@ -1,6 +1,14 @@
 # coding=utf-8
 # 常用函数封装
 
+import re
+
+def is_url(uchar):
+    '''判断是否为url'''
+    if re.match(r'^(?:http)s?://[^\s]*', uchar):
+        return True
+    return False
+
 
 def is_chinese(uchar):
     """判断一个unicode是否是汉字"""

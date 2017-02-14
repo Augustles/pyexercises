@@ -8,23 +8,26 @@ import requests
 @gen.coroutine
 def worker(item):
     r = requests.get('http://www.baidu.com')
-    print 'worker done %s url: %s , status: %s' %(item,r.url,r.status_code)
+    raise gen.Return('worker done %s url: %s , status: %s' %(item,r.url,r.status_code))
 
 
 @gen.coroutine
 def master(item):
-    print 'master done %s' %item
-    yield worker(item)
+    # print 'master done %s' %item
+    ret = yield worker(item)
+    # 可以用gen.Return返回yield
+    raise gen.Return(ret)
 
 
 @gen.coroutine
 def main():
     if True:
-        for x in xrange(99):
-            print 'main start ...'
-            yield master(x)
+        ret = yield [master(x) for x in xrange(999)]
+        for y in ret:
+            print y
+        # for x in xrange(99):
+            # print 'main start %s...' %x
+            # ret = yield master(x)
+            # print ret
 
-try:
-    ioloop.IOLoop.current().run_sync(main)
-except Exception as e:
-    print e
+ioloop.IOLoop.current().run_sync(main)
