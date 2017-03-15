@@ -4,6 +4,7 @@
 [visualgo](http://visualgo.net/index.html)
 [leetcode](https://leetcode.com/)
 [hackerxu](http://hackerxu.com/Twd/)
+
 ## 对象
 类是一个模板, 描述对象的行为和状态
 对象是类一个实例, 有行为状态和行为
@@ -13,7 +14,40 @@ python一切皆对象它们要么是类的实例,要么是元类的实例
 python对象包含三个要素,id标识一个对象,is是用id判断
 type标识对象的类型,value主要是==进行值的判断
 python中的数字,字符串和元祖的不可变主要体现在会新建一个引用计数
+
+# tuple,list,dict,set区别
+tuple为元祖,为不可变list
+list为列表,可以通过切片方式取得list元素
 字典和列表的可变主要是python改变了其引用
+dict为词典,是由key-value组成的键对值
+set为集合,和dict相同,但是只有一组key的集合
+
+####迭代器和生成器
+迭代器是指可以用iter(__iter__),可以用next取得下一个对象
+生成器是创建迭代器的工具,如简单生成器推导式y=(x for x in range(5))
+(列表推倒式(生成式),字典推导式,生成器推导式)
+
+####多进程共享数据
+多进程间共享数据，可以使用 multiprocessing.Value 和 multiprocessing.Array
+
+####copy,deepcopy,赋值区别
+赋值是传递一个对象的引用
+copy,相当于一个copy镜像,被copy对象改变,copy对象不变, 返回和参数内容一样的对象
+deepcopy,被copy对象改变,deepcopy对象也改变, 对象中的属性也被复制
+
+####os.path,sys.path区别
+os.path是处理文件及文件夹的一些方法
+sys.path会返回一个系统环境变量的列表
+
+####re.search,re.match区别
+re.search会查找整个string进行匹配
+re.match只会在0开始匹配成功才会返回
+
+####uwsgi,nginx,flask
+python中有一个专门WSGI接口来编写网站,
+uwsgi通过wsgi接口启动flask实现多线程并发
+nginx再通过proxy_pass(转发)实现反向代理
+nginx server,配置listen,server_name,root,index,location
 
 #### 特殊方法与多范式
 python中特殊方法(special method) __name__,__len__,
@@ -34,6 +68,7 @@ type获取对象的类型,isinstance判断class的类型
 #### 装饰器(decorator)
 就是对一个函数、方法或者类进行加工
 #### python 内存管理
+1.引用计数,2.垃圾回收,3.内存池机制
 id()查看内存地址
 python中每个对象都有存在指向该对象的引用总数,即引用计数(reference count)
 可以用sys.getrefcount()查看对象的引用计数
@@ -44,14 +79,14 @@ python中每个对象都有存在指向该对象的引用总数,即引用计数(
 python任何递归函数都会存在栈溢出的可能
 ;可以把语句写在同一行,\可以语句为多行,(),[],{}不用\可以写成多行
 
-python__init__用来对你的对象进行一些初始化,__del__删除一个类的实例调用
+python __init__用来对你的对象进行一些初始化,__del__删除一个类的实例调用
 python中属性和方法区别,属性是变量(os.name),方法是函数(os.listdir())
 python内置类class属性__name__,__bases__,__dict__,__doc__,__module__
 python内置模块module属性__doc__,__name__,__dict__,__file__
 python内置实例instance属性__dict__,__class__
-python内置函数和方法built-in functions and methods __doc__,__name__,__self__,*__module__
-python def定义的函数__doc__,__name__,*__module__,*__dict__
-python 方法method__doc__,__name__,*__module__
+python内置函数和方法built-in functions and methods __doc__,__name__,__self__,__module__
+python def定义的函数__doc__,__name__,__module__,__dict__
+python 方法method __doc__,__name__,__module__
 python 生成器generator__iter__,gi_code,gi_frame,gi_running,next,close,send,throw
 此外,还有代码块code,栈帧frame,追踪traceback
 ####使用inspct模块提供一系列函数用于帮助使用自省
@@ -62,13 +97,18 @@ getargspec(func)仅用于方法,getcallargs(func),getmro(cls)
 面向对象的三大特点,数据封装,继承,多态
 类class是创建实例的模版instance,实例是一个具体对象,每个实例可以拥有独立的属性
 继承是把父类的功能都拿过来,有了继承,才有多态
-多重继承,定制类,元类__slots__,@property,@metaclass,@staticmethod
+多重继承,定制类,元类
+__slots__,限制类的属性
+@property,方法转为属性
+__metaclass__元类,是一种特殊的类
+@classmethod,类方法
+@staticmethod,静态方法
 class通过__init__()方法传递参数
 参数self指向实例本身
 python中__init__/__del__会调用回显
 
 python内置object对象,__new__创建类的实例,__init__初始化实例
-__delattr__,getattrbute__,setattr__方法,处理属性的访问
+__delattr__,__getattrbute__,__setattr__方法,处理属性的访问
 __hash__,__repr__,__str__方法,print obj 会调用obj.__str__(),找不到则调用__repr__
 __str__的目标是对象信息的可读性,__repr__的目标是对象信息的唯一性,用于程序调试,面向解释器
 
@@ -131,7 +171,7 @@ io, dstat
 kill/killall
 3. 文件系统
 磁盘信息(chmod权限/chown拥有人)
-磁盘使用情况(du -sh */du -sh/fdisk)
+磁盘使用情况(du -sh /du -sh/fdisk)
 boot(unload/ load kernel.old boot)
 已打开文件(lsof)
 挂载/从挂(mount/unmount)

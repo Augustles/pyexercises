@@ -48,7 +48,7 @@ def counter(func):
     '''
     记录并打印一个函数的执行次数
     '''
-    @wraps(func)
+    @wraps(func) # 保留name和doc
     def wrapper(*args,**kw):
         res = func(*args,**kw)
         print '{0} has been used: {1}x'.format(func.__name__,wrapper.count)

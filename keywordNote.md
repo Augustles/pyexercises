@@ -37,7 +37,9 @@
 
 ## python2.7版本中31个关键词
  and as assert break class continue def del elif else except
- exec finally for from global if import in is lambda not or
+ exec finally for from global if import in is
+ lambda 参数:表达式 匿名函数
+ not or
  pass print raise return try while with yield
 
 ## java 关键字
