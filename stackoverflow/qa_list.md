@@ -82,6 +82,10 @@ print '16...'
 17 列表和元祖有什么区别
 print '17...'
 
+18 忽略大小写list排序
+li = ['Z', 'A', 'c', 'b', 'D', 'z']
+sorted(li, key=str.lower) # key对其进行排序
+
 
 
 
