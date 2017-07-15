@@ -34,6 +34,7 @@ set为集合,和dict相同,但是只有一组key的集合
 赋值是传递一个对象的引用
 copy,相当于一个copy镜像,被copy对象改变,copy对象不变, 返回和参数内容一样的对象
 deepcopy,被copy对象改变,deepcopy对象也改变, 对象中的属性也被复制
+值拷贝和引用拷贝的区别
 
 ####os.path,sys.path区别
 os.path是处理文件及文件夹的一些方法
