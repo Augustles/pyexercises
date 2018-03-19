@@ -50,6 +50,40 @@ uwsgi通过wsgi接口启动flask实现多线程并发
 nginx再通过proxy_pass(转发)实现反向代理
 nginx server,配置listen,server_name,root,index,location
 
+####python单例模式
+1.
+class Singleton:
+    def __new__(cls, *args, **kw):
+        if not hasattr(cls, '_instance'):
+            ori = super(Singleton, cls)
+            cls._instance = ori.__new__(cls, *args, **kw)
+        return cls._instance
+2.
+class Singleton2:
+    _state = {}
+    def __new__(cls, *args, **kw):
+        ob = super(Singleton2).__new__(cls, *args, **kw)
+        ob.__dict__ = cls._state
+
+####快排
+def quick(lst):
+    less = []
+    equal = []
+    greater = []
+
+    if len(lst) > 1:
+        pivot = lst[0]
+        for x in lst:
+            if x < pivot:
+                less.append(x)
+            if x == pivot:
+                equal.append(x)
+            if x > pivot:
+                greater.append(x)
+        return sorted(less) + equal + sorted(greater)
+    else:
+        return lst
+
 #### 特殊方法与多范式
 python中特殊方法(special method) __name__,__len__,
 连接字符串也是调用对象的特殊方法+ __add__(),内置函数
