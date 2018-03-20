@@ -84,6 +84,9 @@ def quick(lst):
     else:
         return lst
 
+####匿名函数
+add = lambda x,y:x+y
+
 #### 特殊方法与多范式
 python中特殊方法(special method) __name__,__len__,
 连接字符串也是调用对象的特殊方法+ __add__(),内置函数
@@ -102,6 +105,14 @@ type获取对象的类型,isinstance判断class的类型
 闭包能有效减少函数定义参数的数目
 #### 装饰器(decorator)
 就是对一个函数、方法或者类进行加工
+def log(text):
+    def wrap(func):
+        def wrapper(*args, **kw):
+           res = func(*args, **kw)
+           print text, args, kw
+           return res
+        return wrapper
+    return wrap
 #### python 内存管理
 1.引用计数,2.垃圾回收,3.内存池机制
 id()查看内存地址
