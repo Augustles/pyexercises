@@ -36,6 +36,9 @@ list2 = sorted(dict3.values(),key=operator.itemgetter('a'));print list2
 
 9 根据值排序一个字典
 d = {x:y for (x,y) in zip(range(9,1,-2),range(2,7))}
-d_key = sorted(d.items(), key=lambda x:[1])
-print d_key
+根据key排序
+d_key2 = sorted(d.items(), key=lambda x:x[0])
+根据value排序
+d_key = sorted(d.items(), key=lambda x:x[1])
+print d_key, d_key2
 10 如何将自定义对象作为字典键值
