@@ -4,6 +4,7 @@
 [visualgo](http://visualgo.net/index.html)
 [leetcode](https://leetcode.com/)
 [hackerxu](http://hackerxu.com/Twd/)
+[[csdn](https://www.cnblogs.com/ms520/p/10037968.html)]
 
 ## 对象
 类是一个模板, 描述对象的行为和状态
@@ -51,26 +52,29 @@ nginx再通过proxy_pass(转发)实现反向代理
 nginx server,配置listen,server_name,root,index,location
 
 ####python单例模式
-1.
-class Singleton:
-    def __new__(cls, *args, **kw):
+```
+class Singleton:def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
             ori = super(Singleton, cls)
             cls._instance = ori.__new__(cls, *args, **kw)
         return cls._instance
-2.
+```
+
+```
 class Singleton2:
     _state = {}
     def __new__(cls, *args, **kw):
         ob = super(Singleton2).__new__(cls, *args, **kw)
         ob.__dict__ = cls._state
+```
 
 ####快排
+
+```
 def quick(lst):
     less = []
     equal = []
     greater = []
-
     if len(lst) > 1:
         pivot = lst[0]
         for x in lst:
@@ -83,6 +87,7 @@ def quick(lst):
         return sorted(less) + equal + sorted(greater)
     else:
         return lst
+```
 
 ####匿名函数
 add = lambda x,y:x+y
@@ -105,6 +110,8 @@ type获取对象的类型,isinstance判断class的类型
 闭包能有效减少函数定义参数的数目
 #### 装饰器(decorator)
 就是对一个函数、方法或者类进行加工
+
+```
 def log(text):
     def wrap(func):
         def wrapper(*args, **kw):
@@ -113,6 +120,8 @@ def log(text):
            return res
         return wrapper
     return wrap
+```
+
 #### python 内存管理
 1.引用计数,2.垃圾回收,3.内存池机制
 id()查看内存地址
@@ -194,15 +203,43 @@ gevent并发(协程)框架,重新包装了os,sys,time,subprocess等标准库
 IO密集型:涉及到网络、磁盘IO的任务都是IO密集型任务,这类任务的特点是CPU消耗很少,任务的大部分时间都在等待IO操作完成,IO密集型任务最合适的语言是开发效率高,multiprocessing.dummy(使用线程)
 
 python 位运算,~非,&交集,>>,<<位移(转化为二进制移动),|并集,^只存在其中一方的
+
 ### TCP三次握手
 是指建立一个tcp链接时,需要客户端和服务端总共发送三个包
 未建立连接时Sequence numbe,和Acknowledgement Number都为0
 Sequence number(顺序号码) Acknowledge number(确认号码)
-第一次握手：主机A发送位码为syn＝1,随机产生seq number=1234567的数据包到服务器，主机B由SYN=1知道，A要求建立联机；
-第二次握手：主机B收到请求后要确认联机信息，向A发送ack number=(主机A的seq+1),syn=1,ack=1,随机产生seq=7654321的包
-第三次握手：主机A收到后检查ack number是否正确，即第一次发送的seq number+1,以及位码ack是否为1，若正确，主机A会再发送ack number=(主机B的seq+1),ack=1，主机B收到后确认seq值与ack=1则连接建立成功。
+1. 第一次握手：主机A发送位码为syn＝1,随机产生seq number=1234567的数据包到服务器，主机B由SYN=1知道，A要求建立联机；
+2. 第二次握手：主机B收到请求后要确认联机信息，向A发送ack number=(主机A的seq+1),syn=1,ack=1,随机产生seq=7654321的包
+3. 第三次握手：主机A收到后检查ack number是否正确，即第一次发送的seq number+1,以及位码ack是否为1，若正确，主机A会再发送ack number=(主机B的seq+1),ack=1，主机B收到后确认seq值与ack=1则连接建立成功。
+
 ### TCP四次挥手,是指tcp的连接拆除需要发送四个包
 server端或者client端发送fin报文,server或者client端ack确认
+
+####简单创建一个TCP服务器
+1. socket创建一个套接字
+2. bind一个ip和port
+3. listen变为被动连接
+4. accept客服端请求
+5. recv/send接收发送消息
+
+####TCP与UDP的区别和联系
+1. tcp是面向连接,可靠的(对方收到确认消息才发下一个,否则重发)
+2. udp是无连接的,不可靠(一直发消息,不需要对方回应)
+
+####TCP与HTTP的区别和联系
+1. http协议是基于tcp协议,当客服端发起一个请求,http会通过tcp建立一个连接通道,数据传输完以后会断开连接,http是短连接,无状态的连接
+2. tcp是底层协议,定义的是数据传输和连接方式的规范
+3. http是应用层协议,定义的是数据传输内容的规范
+
+####什么是SOCKET,套接字通讯流程
+1. socket是基于tcp
+2. 是tcp/ip协议通讯的中间软件抽象层,他是一组接口
+3. 一个socket连接可能是tcp也可能是udp
+
+####SOCKET与HTTP的区别
+1. socket和http都是基于tcp连接
+2. socket是长连接,适用于即时应用,IM
+3. http是短连接,不需要时刻保持在线
 
 ### linux
 1. 系统
